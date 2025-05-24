@@ -1,0 +1,5308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical Care Nursing Theoretical</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --success-color: #4CAF50;
+            --danger-color: #f44336;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        /* Home Page Styles */
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .lectures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .lecture-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .lecture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .lecture-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .lecture-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .lecture-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            margin-top: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Quiz Page Styles (existing styles) */
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .question-counter {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        
+        .question-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .question-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--success-color));
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+        
+        .options {
+            margin: 20px 0;
+        }
+        
+        .option {
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .option:hover {
+            background-color: #f8f9fa;
+            border-color: var(--primary-color);
+        }
+        
+        .option.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .option.correct {
+            background-color: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+        
+        .option.incorrect {
+            background-color: var(--danger-color);
+            color: white;
+            border-color: var(--danger-color);
+        }
+        
+        .option-letter {
+            background-color: white;
+            color: var(--dark-color);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .selected .option-letter,
+        .correct .option-letter,
+        .incorrect .option-letter {
+            color: white;
+            background-color: rgba(255,255,255,0.3);
+        }
+        
+        .feedback {
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feedback.correct {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #2E7D32;
+        }
+        
+        .feedback.incorrect {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #C62828;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        
+        button i {
+            margin-left: 5px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 5px 15px;
+        }
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 3px 0;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+        
+        .hint-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .countdown {
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 15px 0 5px 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Hide quiz section initially */
+        #quiz-section {
+            display: none;
+        }
+        
+        .empty-card {
+            opacity: 0.6;
+            background-color: #f8f9fa;
+        }
+        
+        .empty-card .lecture-icon {
+            color: #999;
+        }
+        
+        .empty-card .lecture-title {
+            color: #666;
+        }
+        
+        .empty-card .lecture-desc {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home-section">
+            <header>
+                <h1>Critical Care Nursing Theoretical</h1>
+                <p>Begin with the name of Allah</p>
+            </header>
+            
+            <div class="home-container">
+                <div class="lectures-grid">
+                    <div class="lecture-card" onclick="loadQuiz('critical_care')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <div class="lecture-title">Caring for Critically Ill Patients</div>
+                        <div class="lecture-desc">Questions about critical care nursing</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('pain')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="lecture-title">Pain Management</div>
+                        <div class="lecture-desc">Questions about pain assessment and treatment</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('stress')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="lecture-title">Stress in Critical Care Setting</div>
+                        <div class="lecture-desc">Questions about managing stress in ICU</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('ventilated')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-lungs"></i>
+                        </div>
+                        <div class="lecture-title">Caring for Mechanically Ventilated Patients</div>
+                        <div class="lecture-desc">Questions about ventilator management</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('asthma')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-allergies"></i>
+                        </div>
+                        <div class="lecture-title">Bronchial Asthma</div>
+                        <div class="lecture-desc">Questions about asthma pathophysiology and treatment</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('arf')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-lungs"></i>
+                        </div>
+                        <div class="lecture-title">Acute Respiratory Failure</div>
+                        <div class="lecture-desc">Questions about causes, symptoms, and management of ARF</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('acs')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="lecture-title">Acute Coronary Syndrome</div>
+                        <div class="lecture-desc">Questions about ACS, angina, and MI</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('mi')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="lecture-title">Myocardial Infarction (MI)</div>
+                        <div class="lecture-desc">Questions about heart attack management</div>
+                    </div>
+                    
+                    <div class="lecture-card" onclick="loadQuiz('shock')">
+                        <div class="lecture-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="lecture-title">Shock</div>
+                        <div class="lecture-desc">Questions about different types of shock</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quiz Page -->
+        <div id="quiz-section">
+            <header>
+                <h1 id="quiz-title">Acute Coronary Syndrome (ACS) Questions</h1>
+                <p>Begin with the name of Allah</p>
+            </header>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-value" id="score">0</div>
+                    <div class="stat-label">Score</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="correct-count">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="incorrect-count">0</div>
+                    <div class="stat-label">Wrong</div>
+                </div>
+            </div>
+            
+            <div class="question-counter">
+                Question <span id="current-question">1</span>/<span id="total-questions">40</span>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="question-container">
+                <div id="category" class="category"></div>
+                <h2 id="question-text"></h2>
+                <div class="options" id="options-container"></div>
+                
+                <div class="feedback" id="feedback"></div>
+                
+                <div class="buttons">
+                    <button id="prev-btn" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="hint-btn" onclick="showHint()">
+                        <i class="fas fa-lightbulb"></i>
+                    </button>
+                    <button id="next-btn" onclick="nextQuestion()">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button class="back-btn" onclick="goBackToHome()">
+                <i class="fas fa-home"></i> Back to Lectures
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // قاعدة بيانات الأسئلة لكل موضوع
+        const quizzes = {
+            critical_care: {
+                title: "Caring for Critically Ill Patients",
+                questions: [
+                    {
+                        category: "✅ 1. CCU Basics",
+                        question: "What is the main purpose of Critical Care Units (CCUs)?",
+                        options: {
+                            A: "Long-term rehabilitation",
+                            B: "Providing general checkups",
+                            C: "Monitoring stable patients",
+                            D: "Intensive care for critically ill patients"
+                        },
+                        correctAnswer: "D",
+                        explanation: "CCUs are designed to provide intensive care for critically ill patients who require close monitoring and advanced medical support."
+                    },
+                    {
+                        category: "✅ 1. CCU Basics",
+                        question: "A patient with respiratory failure is likely to be admitted to:",
+                        options: {
+                            A: "General ward",
+                            B: "Recovery room",
+                            C: "CCU",
+                            D: "ER waiting area"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Patients with respiratory failure often require intensive monitoring and ventilator support available in CCUs."
+                    },
+                    {
+                        category: "✅ 1. CCU Basics",
+                        question: "Which of the following is a reason for CCU admission?",
+                        options: {
+                            A: "Routine blood test",
+                            B: "Minor fever",
+                            C: "After a major surgery",
+                            D: "Annual physical exam"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Patients post major surgery often require intensive monitoring in CCUs due to potential complications."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "Which of these is a spiritual nursing care activity?",
+                        options: {
+                            A: "Administering antibiotics",
+                            B: "Performing a physical assessment",
+                            C: "Supporting patient's religious practices",
+                            D: "Recording vital signs"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Spiritual care includes supporting patients' religious or spiritual practices as part of holistic care."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "Patients in CCU may experience all of the following except:",
+                        options: {
+                            A: "Sleep deprivation",
+                            B: "Improved privacy",
+                            C: "Anxiety",
+                            D: "Pain from procedures"
+                        },
+                        correctAnswer: "B",
+                        explanation: "CCU environments often have limited privacy due to constant monitoring and shared spaces."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "What is a common cause of anxiety in CCU patients?",
+                        options: {
+                            A: "Fast recovery",
+                            B: "Lack of medications",
+                            C: "Fear of death",
+                            D: "Overeating"
+                        },
+                        correctAnswer: "C",
+                        explanation: "The critical nature of their condition often leads patients to fear death or poor outcomes."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "A nurse helping a patient cope with loss of control is addressing:",
+                        options: {
+                            A: "Emotional needs",
+                            B: "Physical therapy",
+                            C: "Medical error prevention",
+                            D: "Nutrition support"
+                        },
+                        correctAnswer: "A",
+                        explanation: "Helping patients cope with emotional challenges like loss of control is part of emotional support."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "Impaired verbal communication in CCU is often caused by:",
+                        options: {
+                            A: "Joy",
+                            B: "Sedation or intubation",
+                            C: "High spirits",
+                            D: "Exercise"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Many CCU patients are intubated or sedated, which prevents normal verbal communication."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "The most vital role of the registered nurse in CCU is:",
+                        options: {
+                            A: "Laboratory technician",
+                            B: "Administrator",
+                            C: "Direct care provider",
+                            D: "Janitor"
+                        },
+                        correctAnswer: "C",
+                        explanation: "While nurses have many roles, their primary function is providing direct patient care."
+                    },
+                    {
+                        category: "✅ 2. Nursing Care",
+                        question: "Holistic care means caring for:",
+                        options: {
+                            A: "Only physical health",
+                            B: "Technology issues",
+                            C: "Emotional, psychological, and spiritual needs",
+                            D: "Billing issues"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Holistic care addresses all aspects of a patient's well-being, not just physical health."
+                    },
+                    {
+                        category: "✅ 3. Complementary Therapies",
+                        question: "Which therapy focuses on imagination and relaxation?",
+                        options: {
+                            A: "X-ray",
+                            B: "Guided Imagery",
+                            C: "Surgery",
+                            D: "Dialysis"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Guided Imagery uses mental visualization to promote relaxation and healing."
+                    },
+                    {
+                        category: "✅ 3. Complementary Therapies",
+                        question: "Guided Imagery can help reduce:",
+                        options: {
+                            A: "Hunger",
+                            B: "Pain and anxiety",
+                            C: "Blood volume",
+                            D: "Hearing"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Research shows guided imagery can effectively reduce both pain perception and anxiety."
+                    },
+                    {
+                        category: "✅ 3. Complementary Therapies",
+                        question: "What is the effect of Back Massage?",
+                        options: {
+                            A: "Increases stress",
+                            B: "Promotes anxiety",
+                            C: "Promotes sleep",
+                            D: "Interrupts communication"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Back massage promotes relaxation which can lead to improved sleep in CCU patients."
+                    },
+                    {
+                        category: "✅ 3. Complementary Therapies",
+                        question: "Which of the following is a complementary therapy?",
+                        options: {
+                            A: "Antibiotics",
+                            B: "Blood transfusion",
+                            C: "Guided Imagery",
+                            D: "Radiology"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Guided Imagery is considered complementary to traditional medical treatments."
+                    },
+                    {
+                        category: "✅ 3. Complementary Therapies",
+                        question: "Involving the family in care decisions helps in:",
+                        options: {
+                            A: "Extending hospital stay",
+                            B: "Slowing recovery",
+                            C: "Supporting healing",
+                            D: "Causing confusion"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Family involvement often improves patient outcomes and supports the healing process."
+                    },
+                    {
+                        category: "✅ 4. CCU Environment",
+                        question: "What is a major concern in high-tech CCU environments?",
+                        options: {
+                            A: "Overstaffing",
+                            B: "Diminished caring component",
+                            C: "Shortage of equipment",
+                            D: "Too many family visits"
+                        },
+                        correctAnswer: "B",
+                        explanation: "The focus on technology can sometimes overshadow the human aspect of patient care."
+                    },
+                    {
+                        category: "✅ 4. CCU Environment",
+                        question: "What is the focus of CCU treatments?",
+                        options: {
+                            A: "Aesthetic surgeries",
+                            B: "Hemodynamic stability",
+                            C: "Fitness training",
+                            D: "Dental care"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Maintaining hemodynamic stability (blood pressure, circulation) is a primary focus in CCUs."
+                    },
+                    {
+                        category: "✅ 4. CCU Environment",
+                        question: "Which team member provides medication safety in CCU?",
+                        options: {
+                            A: "Social worker",
+                            B: "Registered nurse",
+                            C: "Pharmacist",
+                            D: "Radiologist"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Pharmacists play a key role in ensuring medication safety and proper dosing."
+                    },
+                    {
+                        category: "✅ 5. AACN Standards",
+                        question: "What does AACN Standard I emphasize?",
+                        options: {
+                            A: "Technology use",
+                            B: "Financial audits",
+                            C: "Skilled communication",
+                            D: "Fast procedures"
+                        },
+                        correctAnswer: "C",
+                        explanation: "AACN's first standard focuses on skilled communication as foundational to quality care."
+                    },
+                    {
+                        category: "✅ 5. AACN Standards",
+                        question: "According to AACN, nurses must recognize:",
+                        options: {
+                            A: "Only doctors",
+                            B: "Their own limits",
+                            C: "Value of each other's contributions",
+                            D: "Only their achievements"
+                        },
+                        correctAnswer: "C",
+                        explanation: "AACN promotes recognizing all team members' contributions for effective collaboration."
+                    },
+                    {
+                        category: "✅ 5. AACN Standards",
+                        question: "Which standard relates to nurse leadership?",
+                        options: {
+                            A: "Skilled Communication",
+                            B: "Authentic Leadership",
+                            C: "True Collaboration",
+                            D: "Safe Medication"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Authentic Leadership is one of AACN's six standards for healthy work environments."
+                    },
+                    {
+                        category: "✅ 5. AACN Standards",
+                        question: "Which is not a part of healthy work environment standards?",
+                        options: {
+                            A: "Meaningful Recognition",
+                            B: "Ignoring feedback",
+                            C: "Skilled Communication",
+                            D: "Authentic Leadership"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Ignoring feedback contradicts the principles of a healthy work environment."
+                    },
+                    {
+                        category: "✅ 6. Patient Outcomes",
+                        question: "Guided Imagery may:",
+                        options: {
+                            A: "Cause infection",
+                            B: "Decrease ICU stay",
+                            C: "Reduce oxygen levels",
+                            D: "Lead to complications"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Studies suggest guided imagery can reduce stress and potentially shorten ICU stays."
+                    },
+                    {
+                        category: "✅ 6. Patient Outcomes",
+                        question: "A benefit of massage therapy is to:",
+                        options: {
+                            A: "Increase stress",
+                            B: "Reduce muscle tension",
+                            C: "Cause sleep disruption",
+                            D: "Increase pulse rate"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Massage therapy helps relieve muscle tension and promote relaxation."
+                    },
+                    {
+                        category: "✅ 6. Patient Outcomes",
+                        question: "What contributes to disturbed body image in CCU?",
+                        options: {
+                            A: "Spa therapy",
+                            B: "Invasive procedures",
+                            C: "Normal aging",
+                            D: "Meditation"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Invasive procedures like intubation or surgery can temporarily alter appearance and affect body image."
+                    },
+                    {
+                        category: "✅ 7. Safety & Quality",
+                        question: "Which is a patient safety goal by Joint Commission?",
+                        options: {
+                            A: "Ignore patient ID",
+                            B: "Avoid alarm systems",
+                            C: "Prevent infections",
+                            D: "Limit communication"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Infection prevention is a key patient safety goal in all healthcare settings."
+                    },
+                    {
+                        category: "✅ 7. Safety & Quality",
+                        question: "Which therapy helps to focus imagination?",
+                        options: {
+                            A: "Chemotherapy",
+                            B: "Guided Imagery",
+                            C: "Radiology",
+                            D: "Diet control"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Guided Imagery uses focused imagination to promote healing and relaxation."
+                    },
+                    {
+                        category: "✅ 7. Safety & Quality",
+                        question: "Which is a cause of sleep deprivation in CCU?",
+                        options: {
+                            A: "Quiet environment",
+                            B: "Frequent monitoring",
+                            C: "Relaxation therapy",
+                            D: "Warm meals"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Constant monitoring and interventions disrupt normal sleep patterns in CCUs."
+                    },
+                    {
+                        category: "✅ 8. Team Approach",
+                        question: "CCU care involves which approach?",
+                        options: {
+                            A: "Mechanical only",
+                            B: "Technical only",
+                            C: "Holistic",
+                            D: "Isolated care"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Effective CCU care requires a holistic approach addressing all patient needs."
+                    },
+                    {
+                        category: "✅ 8. Team Approach",
+                        question: "CCU team includes all except:",
+                        options: {
+                            A: "Intensivists",
+                            B: "Social workers",
+                            C: "Gardeners",
+                            D: "Nurses"
+                        },
+                        correctAnswer: "C",
+                        explanation: "While important for hospital maintenance, gardeners are not part of the clinical CCU team."
+                    },
+                    {
+                        category: "✅ 9. Psychological Impact",
+                        question: "What is one of the emotional effects of CCU stay?",
+                        options: {
+                            A: "Confidence boost",
+                            B: "Low self-esteem",
+                            C: "Joy",
+                            D: "Independence"
+                        },
+                        correctAnswer: "B",
+                        explanation: "The dependent nature of CCU care can negatively impact self-esteem."
+                    },
+                    {
+                        category: "✅ 9. Psychological Impact",
+                        question: "The environment of CCU is often described as:",
+                        options: {
+                            A: "Calm and slow",
+                            B: "Fast-paced and technological",
+                            C: "Relaxing and cozy",
+                            D: "Silent and dark"
+                        },
+                        correctAnswer: "B",
+                        explanation: "CCUs are characterized by rapid interventions and advanced technology."
+                    },
+                    {
+                        category: "✅ 9. Psychological Impact",
+                        question: "A threat of helplessness in CCU causes:",
+                        options: {
+                            A: "Peace",
+                            B: "Anxiety",
+                            C: "Excitement",
+                            D: "Joy"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Feelings of helplessness commonly lead to anxiety in critically ill patients."
+                    },
+                    {
+                        category: "✅ 10. Patient Satisfaction",
+                        question: "What enhances patient satisfaction in CCU?",
+                        options: {
+                            A: "Isolation",
+                            B: "Guided Imagery",
+                            C: "Fewer nurses",
+                            D: "High noise levels"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Complementary therapies like guided imagery can improve patient satisfaction."
+                    },
+                    {
+                        category: "✅ 10. Patient Satisfaction",
+                        question: "A healthy work environment requires:",
+                        options: {
+                            A: "Silent leadership",
+                            B: "Fake collaboration",
+                            C: "True collaboration",
+                            D: "Individualism"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Genuine collaboration among staff is essential for quality patient care."
+                    },
+                    {
+                        category: "✅ 10. Patient Satisfaction",
+                        question: "Impaired verbal communication may result from:",
+                        options: {
+                            A: "Overhydration",
+                            B: "Intubation",
+                            C: "Playing music",
+                            D: "Warm blankets"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Endotracheal tubes prevent normal speech in intubated patients."
+                    },
+                    {
+                        category: "✅ 11. Family Involvement",
+                        question: "Family support helps in:",
+                        options: {
+                            A: "Delaying care",
+                            B: "Promoting recovery",
+                            C: "Increasing tension",
+                            D: "Restricting visitors"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Family involvement is associated with better patient outcomes and recovery."
+                    },
+                    {
+                        category: "✅ 11. Family Involvement",
+                        question: "Critical care nurses must:",
+                        options: {
+                            A: "Focus only on machines",
+                            B: "Ignore emotions",
+                            C: "Balance technology with patient needs",
+                            D: "Stay distant"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Effective CCU nursing requires balancing technical skills with patient-centered care."
+                    },
+                    {
+                        category: "✅ 12. Regulatory Standards",
+                        question: "Who establishes national safety goals for CCU in the USA?",
+                        options: {
+                            A: "AACN",
+                            B: "ANA",
+                            C: "The Joint Commission",
+                            D: "WHO"
+                        },
+                        correctAnswer: "C",
+                        explanation: "The Joint Commission sets national patient safety goals for US healthcare organizations."
+                    },
+                    {
+                        category: "✅ 12. Regulatory Standards",
+                        question: "What is the goal of meaningful recognition in CCUs?",
+                        options: {
+                            A: "Ignore performance",
+                            B: "Promote self-pride",
+                            C: "Value contributions of staff",
+                            D: "Limit recognition"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Meaningful recognition validates staff contributions and improves morale."
+                    }
+                ]
+            },
+            pain: {
+    title: "Pain Management",
+    questions: [
+        {
+            category: "✅ 1. Basics",
+            question: "What is the definition of pain?",
+            options: {
+                A: "A pleasant sensation felt in the body",
+                B: "An unpleasant sensory and emotional experience associated with actual or potential tissue damage",
+                C: "Only a physical sensation without emotional involvement",
+                D: "A psychological disorder unrelated to tissue damage"
+            },
+            correctAnswer: "B",
+            explanation: "Pain is defined by IASP as an unpleasant sensory and emotional experience associated with actual or potential tissue damage."
+        },
+        {
+            category: "✅ 1. Basics",
+            question: "Which type of pain lasts less than 6 months?",
+            options: {
+                A: "Chronic pain",
+                B: "Neuropathic pain",
+                C: "Acute pain",
+                D: "Nociceptive pain"
+            },
+            correctAnswer: "C",
+            explanation: "Acute pain typically lasts less than 6 months and is often related to tissue injury."
+        },
+        {
+            category: "✅ 1. Basics",
+            question: "Chronic pain is characterized by:",
+            options: {
+                A: "Pain lasting less than 3 months",
+                B: "Pain persisting more than 6 months after healing",
+                C: "Pain only due to nerve injury",
+                D: "Pain that disappears immediately after treatment"
+            },
+            correctAnswer: "B",
+            explanation: "Chronic pain persists beyond normal healing time, typically more than 6 months."
+        },
+        {
+            category: "✅ 2. Types of Pain",
+            question: "Nociceptive pain arises from:",
+            options: {
+                A: "Activation of nociceptors",
+                B: "Damage to the brain only",
+                C: "Psychological factors",
+                D: "Only chronic conditions"
+            },
+            correctAnswer: "A",
+            explanation: "Nociceptive pain results from activation of nociceptors in response to tissue injury."
+        },
+        {
+            category: "✅ 2. Types of Pain",
+            question: "Neuropathic pain results from:",
+            options: {
+                A: "Nociceptor stimulation",
+                B: "Lesion or disease affecting the somatosensory system",
+                C: "Emotional stress",
+                D: "Inflammation of superficial tissues"
+            },
+            correctAnswer: "B",
+            explanation: "Neuropathic pain arises from damage or disease affecting the somatosensory nervous system."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "Which process of nociception involves converting stimuli into electrical impulses?",
+            options: {
+                A: "Transmission",
+                B: "Modulation",
+                C: "Perception",
+                D: "Transduction"
+            },
+            correctAnswer: "D",
+            explanation: "Transduction is the process where noxious stimuli are converted into electrical impulses."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "The spinothalamic pathway is involved in which nociceptive process?",
+            options: {
+                A: "Transduction",
+                B: "Perception",
+                C: "Transmission",
+                D: "Modulation"
+            },
+            correctAnswer: "C",
+            explanation: "The spinothalamic tract transmits pain signals from the spinal cord to the brain."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "Where in the brain is pain perceived?",
+            options: {
+                A: "Hypothalamus, thalamus, and brain stem",
+                B: "Cerebellum only",
+                C: "Medulla oblongata only",
+                D: "Hippocampus only"
+            },
+            correctAnswer: "A",
+            explanation: "Pain perception involves multiple brain areas including thalamus, hypothalamus and brain stem."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "What is the role of modulation in pain?",
+            options: {
+                A: "To transmit pain impulses to the brain",
+                B: "To convert pain stimuli into electrical signals",
+                C: "To enhance or inhibit pain signals via endogenous opioids",
+                D: "To cause pain sensation in the peripheral tissues"
+            },
+            correctAnswer: "C",
+            explanation: "Modulation can either amplify or suppress pain signals through endogenous systems."
+        },
+        {
+            category: "✅ 4. Pain Factors",
+            question: "Which of the following is NOT a physical factor contributing to pain in CCU patients?",
+            options: {
+                A: "Sleep deprivation",
+                B: "Anxiety",
+                C: "Immobility",
+                D: "Wounds and postoperative pain"
+            },
+            correctAnswer: "B",
+            explanation: "Anxiety is a psychological factor, not physical."
+        },
+        {
+            category: "✅ 4. Pain Factors",
+            question: "Which psychosocial factor can contribute to pain?",
+            options: {
+                A: "Temperature extremes",
+                B: "Impaired communication",
+                C: "Wounds",
+                D: "Restricted movement"
+            },
+            correctAnswer: "B",
+            explanation: "Impaired communication can increase distress and perceived pain."
+        },
+        {
+            category: "✅ 4. Pain Factors",
+            question: "Continuous noise in ICU is an example of:",
+            options: {
+                A: "Psychosocial factor",
+                B: "Physical factor",
+                C: "ICU environmental factor",
+                D: "Psychological factor"
+            },
+            correctAnswer: "C",
+            explanation: "ICU environmental factors like noise can exacerbate pain perception."
+        },
+        {
+            category: "✅ 5. Assessment",
+            question: "PQRSTU is used in:",
+            options: {
+                A: "Pain management medication",
+                B: "Pain assessment in communicative patients",
+                C: "Psychological therapies for pain",
+                D: "Physical pain modalities"
+            },
+            correctAnswer: "B",
+            explanation: "PQRSTU is a mnemonic for comprehensive pain assessment in communicative patients."
+        },
+        {
+            category: "✅ 5. Assessment",
+            question: "Which pain assessment scale uses facial expressions?",
+            options: {
+                A: "Numeric Rating Scale",
+                B: "Verbal Pain Scale",
+                C: "Faces Pain Rating Scale",
+                D: "Pain Intensity Scale"
+            },
+            correctAnswer: "C",
+            explanation: "Faces scales use facial expressions to assess pain intensity."
+        },
+        {
+            category: "✅ 5. Assessment",
+            question: "Behavior Pain Assessment Scale is used for:",
+            options: {
+                A: "Communicative patients",
+                B: "Non-communicative or cognitively impaired patients",
+                C: "Patients with chronic pain only",
+                D: "Pediatric patients only"
+            },
+            correctAnswer: "B",
+            explanation: "Behavioral scales assess pain through observable behaviors in non-verbal patients."
+        },
+        {
+            category: "✅ 5. Assessment",
+            question: "Which of the following is a barrier to pain assessment?",
+            options: {
+                A: "Awake patient",
+                B: "Intubation",
+                C: "Ability to communicate",
+                D: "No movement restrictions"
+            },
+            correctAnswer: "B",
+            explanation: "Intubation prevents verbal communication, making pain assessment challenging."
+        },
+        {
+            category: "✅ 6. Management",
+            question: "What type of pain management is predominantly used in critical care?",
+            options: {
+                A: "Non-pharmacologic only",
+                B: "Pharmacologic only",
+                C: "Pharmacologic and non-pharmacologic combined",
+                D: "Surgical pain management only"
+            },
+            correctAnswer: "C",
+            explanation: "Critical care uses multimodal approaches combining both methods."
+        },
+        {
+            category: "✅ 6. Management",
+            question: "Distraction as a psychological modality works by:",
+            options: {
+                A: "Eliminating pain completely",
+                B: "Changing patient's attention from pain to other stimuli",
+                C: "Causing muscle relaxation",
+                D: "Reducing inflammation"
+            },
+            correctAnswer: "B",
+            explanation: "Distraction techniques redirect attention away from pain."
+        },
+        {
+            category: "✅ 6. Management",
+            question: "Which non-pharmacological method uses imagination to reduce pain?",
+            options: {
+                A: "Touch",
+                B: "Guided imagery",
+                C: "Heat application",
+                D: "Cold application"
+            },
+            correctAnswer: "B",
+            explanation: "Guided imagery uses mental visualization to alter pain perception."
+        },
+        {
+            category: "✅ 6. Management",
+            question: "Relaxation strategies are particularly indicated when the patient has:",
+            options: {
+                A: "Muscle tension",
+                B: "Infection",
+                C: "High fever",
+                D: "Chronic neuropathic pain only"
+            },
+            correctAnswer: "A",
+            explanation: "Relaxation techniques help relieve tension-related pain."
+        },
+        {
+            category: "✅ 7. Physical Modalities",
+            question: "Which of these physical modalities helps reduce muscle spasm by causing vasodilation?",
+            options: {
+                A: "Cold application",
+                B: "Heat application",
+                C: "Massage",
+                D: "Positioning"
+            },
+            correctAnswer: "B",
+            explanation: "Heat therapy promotes vasodilation and muscle relaxation."
+        },
+        {
+            category: "✅ 7. Physical Modalities",
+            question: "Cold therapy in pain management causes:",
+            options: {
+                A: "Vasodilation and increased blood flow",
+                B: "Vasoconstriction and reduced edema",
+                C: "Muscle relaxation only",
+                D: "No effect on inflammation"
+            },
+            correctAnswer: "B",
+            explanation: "Cold causes vasoconstriction and decreases swelling."
+        },
+        {
+            category: "✅ 7. Physical Modalities",
+            question: "What is the role of positioning in pain management?",
+            options: {
+                A: "To immobilize the patient fully",
+                B: "To increase patient comfort and promote proper body alignment",
+                C: "To increase muscle spasm",
+                D: "To increase pain intensity"
+            },
+            correctAnswer: "B",
+            explanation: "Proper positioning reduces discomfort and prevents complications."
+        },
+        {
+            category: "✅ 8. Pharmacological",
+            question: "Which statement is true about pharmacological pain management?",
+            options: {
+                A: "Nurses only administer medications and do not monitor effects",
+                B: "Medications should be titrated based on patient response",
+                C: "Drugs are always given at fixed doses regardless of patient condition",
+                D: "Analgesia is not needed in critically ill patients"
+            },
+            correctAnswer: "B",
+            explanation: "Analgesics should be carefully titrated to individual needs."
+        },
+        {
+            category: "✅ 8. Pharmacological",
+            question: "What effect does inadequate pain relief have on ICU stay?",
+            options: {
+                A: "Decreases ICU stay",
+                B: "Has no effect",
+                C: "Increases ICU stay",
+                D: "Prevents infection"
+            },
+            correctAnswer: "C",
+            explanation: "Poor pain control can prolong recovery and ICU stay."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "Which chemical substances are released during transduction to stimulate nociceptors?",
+            options: {
+                A: "Serotonin and dopamine",
+                B: "Histamine, substance P, and prostaglandins",
+                C: "Insulin and glucagon",
+                D: "Endorphins and enkephalins"
+            },
+            correctAnswer: "B",
+            explanation: "These inflammatory mediators sensitize nociceptors."
+        },
+        {
+            category: "✅ 4. Pain Factors",
+            question: "Which factor is NOT a psychosocial contributor to pain?",
+            options: {
+                A: "Separation from family",
+                B: "Anxiety and depression",
+                C: "Sleep disturbance",
+                D: "Fear of pain or death"
+            },
+            correctAnswer: "C",
+            explanation: "Sleep disturbance is a physical, not psychosocial factor."
+        },
+        {
+            category: "✅ 1. Basics",
+            question: "What is the typical duration for acute pain?",
+            options: {
+                A: "More than 6 months",
+                B: "Less than 6 months",
+                C: "Exactly 12 months",
+                D: "Only during surgery"
+            },
+            correctAnswer: "B",
+            explanation: "Acute pain is typically time-limited (<6 months)."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "Which process of nociception involves the brain's interpretation of pain?",
+            options: {
+                A: "Transmission",
+                B: "Perception",
+                C: "Modulation",
+                D: "Transduction"
+            },
+            correctAnswer: "B",
+            explanation: "Perception is the conscious experience of pain."
+        },
+        {
+            category: "✅ 6. Management",
+            question: "Which non-pharmacologic intervention involves physical contact to convey support?",
+            options: {
+                A: "Distraction",
+                B: "Touch",
+                C: "Guided imagery",
+                D: "Relaxation"
+            },
+            correctAnswer: "B",
+            explanation: "Therapeutic touch provides comfort and support."
+        },
+        {
+            category: "✅ 8. Pharmacological",
+            question: "What is the main goal of pharmacologic pain management in critical care?",
+            options: {
+                A: "Eliminate pain immediately",
+                B: "Provide consistent analgesia and titrate drugs according to patient response",
+                C: "Only use opioids",
+                D: "Avoid all medications"
+            },
+            correctAnswer: "B",
+            explanation: "The goal is balanced analgesia tailored to individual needs."
+        },
+        {
+            category: "✅ 4. Pain Factors",
+            question: "What can increase pain and discomfort in the ICU environment?",
+            options: {
+                A: "Quiet, dark rooms",
+                B: "Continuous light and noise",
+                C: "Adequate rest",
+                D: "Family visits"
+            },
+            correctAnswer: "B",
+            explanation: "Environmental stressors exacerbate pain perception."
+        },
+        {
+            category: "✅ 7. Physical Modalities",
+            question: "How does massage help in pain management?",
+            options: {
+                A: "Increases muscle tension",
+                B: "Decreases muscle tension and promotes relaxation",
+                C: "Causes inflammation",
+                D: "Has no effect on pain"
+            },
+            correctAnswer: "B",
+            explanation: "Massage relieves muscle tension and improves circulation."
+        },
+        {
+            category: "✅ 4. Pain Factors",
+            question: "Which of the following is NOT a typical cause of pain in CCU patients?",
+            options: {
+                A: "Endotracheal suctioning",
+                B: "Turning and moving",
+                C: "Chest tube insertion",
+                D: "Routine vital signs monitoring"
+            },
+            correctAnswer: "D",
+            explanation: "Routine monitoring shouldn't cause significant pain."
+        },
+        {
+            category: "✅ 5. Assessment",
+            question: "What is the best method to assess pain in a sedated patient?",
+            options: {
+                A: "Verbal Pain Scale",
+                B: "Numeric Rating Scale",
+                C: "Behavior Pain Assessment Scale",
+                D: "Faces Pain Rating Scale"
+            },
+            correctAnswer: "C",
+            explanation: "Behavioral scales are essential for non-communicative patients."
+        },
+        {
+            category: "✅ 3. Nociception",
+            question: "What is the significance of endogenous opioids in pain modulation?",
+            options: {
+                A: "They increase pain signals",
+                B: "They inhibit pain signals reducing pain perception",
+                C: "They cause tissue damage",
+                D: "They have no role in pain"
+            },
+            correctAnswer: "B",
+            explanation: "Endogenous opioids are natural pain-relieving substances."
+        },
+        {
+            category: "✅ 6. Management",
+            question: "Which psychological pain intervention requires no special equipment and minimal training?",
+            options: {
+                A: "Guided imagery",
+                B: "Active listening",
+                C: "Relaxation strategies",
+                D: "Distraction"
+            },
+            correctAnswer: "C",
+            explanation: "Simple relaxation techniques are easily implementable."
+        },
+        {
+            category: "✅ 8. Pharmacological",
+            question: "Which of the following is an example of pharmacologic pain management?",
+            options: {
+                A: "Heat application",
+                B: "Opioid administration",
+                C: "Guided imagery",
+                D: "Massage"
+            },
+            correctAnswer: "B",
+            explanation: "Opioids are pharmaceutical pain relievers."
+        },
+        {
+            category: "✅ 9. Special Considerations",
+            question: "What is the impact of pain on respiratory function in spontaneously breathing patients?",
+            options: {
+                A: "Increases tidal volume",
+                B: "Decreases tidal volume and functional residual capacity (FRC)",
+                C: "Has no impact",
+                D: "Improves respiratory rate"
+            },
+            correctAnswer: "B",
+            explanation: "Pain can cause splinting and reduced respiratory effort."
+        },
+        {
+            category: "✅ 5. Assessment",
+            question: "Which patient factor can make pain assessment more difficult?",
+            options: {
+                A: "Full consciousness",
+                B: "Ability to communicate clearly",
+                C: "Endotracheal intubation",
+                D: "No movement restriction"
+            },
+            correctAnswer: "C",
+            explanation: "Intubated patients cannot verbally report pain."
+        }
+    ]
+},
+            stress: {
+  title: "Stress in Critical Care Setting",
+  questions: [
+    {
+      question: "What is the definition of stress according to Seaward (2009)?",
+      options: {
+        A: "A positive response to any demand",
+        B: "A nonspecific response to any demand placed on a person to adapt or change",
+        C: "A disease caused by external factors",
+        D: "A specific psychological condition"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is NOT a common stressor in critical care units?",
+      options: {
+        A: "Threat of death",
+        B: "Excessive noise and alarms",
+        C: "Familiar environment",
+        D: "Pain and discomfort"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "What is the first stage of the General Adaptation Syndrome (GAS)?",
+      options: {
+        A: "Resistance",
+        B: "Exhaustion",
+        C: "Alarm",
+        D: "Recovery"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "During the alarm stage, which hormone is NOT released?",
+      options: {
+        A: "Cortisol",
+        B: "Aldosterone",
+        C: "Insulin",
+        D: "Epinephrine"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "What is the primary role of cortisol during the alarm stage of stress?",
+      options: {
+        A: "Increase blood sugar levels",
+        B: "Promote water excretion",
+        C: "Decrease heart rate",
+        D: "Block adrenaline release"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which system is stimulated during the \"fight-or-flight\" response?",
+      options: {
+        A: "Parasympathetic nervous system",
+        B: "Sympathetic nervous system",
+        C: "Digestive system",
+        D: "Central nervous system only"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What happens during the resistance stage of the General Adaptation Syndrome?",
+      options: {
+        A: "The body fails to respond to stress",
+        B: "Adaptation occurs, and normal functioning returns",
+        C: "The body enters a coma",
+        D: "Immediate fight or flight response happens"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "If the stressor continues and the resistance stage fails, what is the next stage?",
+      options: {
+        A: "Alarm",
+        B: "Recovery",
+        C: "Exhaustion",
+        D: "Adaptation"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which of the following is a sign of exhaustion stage?",
+      options: {
+        A: "Increased energy",
+        B: "Decreased ability to resist stress",
+        C: "Improved physiological function",
+        D: "None of the above"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which hormone leads to salt and water retention during stress?",
+      options: {
+        A: "Cortisol",
+        B: "Aldosterone",
+        C: "Epinephrine",
+        D: "Insulin"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Critical care nurses can reduce patient stress by:",
+      options: {
+        A: "Ignoring patient’s psychological needs",
+        B: "Providing information and fostering trust",
+        C: "Increasing noise levels",
+        D: "Limiting family visits"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following helps promote sleep in CCU patients?",
+      options: {
+        A: "Bright lights during night",
+        B: "Frequent unnecessary procedures",
+        C: "Providing pain relief and comfortable positioning",
+        D: "Loud alarms"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "How can nurses foster trust with CCU patients?",
+      options: {
+        A: "Respond slowly to patient needs",
+        B: "Communicate kindly and competently",
+        C: "Avoid explaining procedures",
+        D: "Ignore patient’s discomfort"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Non-verbal communication methods for ventilated patients include:",
+      options: {
+        A: "Writing pads",
+        B: "Talking loudly",
+        C: "Ignoring patient signals",
+        D: "None of the above"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Why is providing information important for CCU patients?",
+      options: {
+        A: "It increases anxiety",
+        B: "It reduces anxiety and builds trust",
+        C: "It confuses patients",
+        D: "It wastes nurse’s time"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is NOT an intervention to create a healing environment?",
+      options: {
+        A: "Playing music preferred by the patient",
+        B: "Promoting sleep and rest",
+        C: "Providing information about procedures",
+        D: "Ignoring patient requests"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "Which of these is a physiological change during the alarm stage of stress?",
+      options: {
+        A: "Decreased heart rate",
+        B: "Increased blood pressure",
+        C: "Decreased respiratory rate",
+        D: "Reduced sweating"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is a symptom of stress response?",
+      options: {
+        A: "Tremors",
+        B: "Fatigue only after exhaustion stage",
+        C: "Lowered blood sugar",
+        D: "Hypotension"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What role does Aldosterone play in stress response?",
+      options: {
+        A: "Reduces sodium retention",
+        B: "Promotes salt and water retention",
+        C: "Decreases blood pressure",
+        D: "Stimulates adrenal medulla to release hormones"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which nursing action is best to reduce noise stress for patients?",
+      options: {
+        A: "Keep alarms loud",
+        B: "Use earplugs if necessary",
+        C: "Avoid covering patient’s privacy",
+        D: "Remove clocks and calendars"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Why is sleep important in CCU patients?",
+      options: {
+        A: "To increase anxiety",
+        B: "To help healing and reduce stress",
+        C: "To reduce oxygen saturation",
+        D: "To promote more pain"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which stage of GAS can last for years if stress continues?",
+      options: {
+        A: "Alarm",
+        B: "Resistance",
+        C: "Exhaustion",
+        D: "Recovery"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which hormone is released from the adrenal medulla during stress?",
+      options: {
+        A: "Cortisol",
+        B: "Epinephrine",
+        C: "Aldosterone",
+        D: "Insulin"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "The fight or flight response causes:",
+      options: {
+        A: "Increased heart rate and blood pressure",
+        B: "Decreased respiratory rate",
+        C: "Reduced glucose production",
+        D: "Decreased sweating"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which of these is NOT a physical stressor in CCU?",
+      options: {
+        A: "Pain and discomfort",
+        B: "Complex technologies",
+        C: "Family visits",
+        D: "Invasive procedures"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which nursing intervention supports spirituality in CCU?",
+      options: {
+        A: "Allow patient to practice religious principles",
+        B: "Ignore patient’s spiritual needs",
+        C: "Prevent any religious practices",
+        D: "Limit family visits"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "How can nurses help patients regain control?",
+      options: {
+        A: "Make all decisions without patient input",
+        B: "Allow choices and involve patients in decision-making",
+        C: "Ignore patient preferences",
+        D: "Limit patient’s knowledge about procedures"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following helps to reduce stress by providing comfort?",
+      options: {
+        A: "Playing loud music",
+        B: "Providing pain relief and back massage",
+        C: "Ignoring patient’s requests",
+        D: "Frequent procedures at night"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of these is a psychological stressor for CCU patients?",
+      options: {
+        A: "Invasive procedures",
+        B: "Separation from family and friends",
+        C: "Complex technology",
+        D: "Nasogastric tube insertion"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "A key feature of the exhaustion stage is:",
+      options: {
+        A: "Improved adaptation to stress",
+        B: "Body resources become depleted",
+        C: "Fight or flight response is activated",
+        D: "Increased energy availability"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is true about the resistance stage?",
+      options: {
+        A: "It happens immediately after alarm stage",
+        B: "Body adapts and tries to restore normal functions",
+        C: "Body fails to resist stress",
+        D: "Patient always recovers fully without intervention"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is a key role of critical care nurses in managing stress?",
+      options: {
+        A: "Providing invasive procedures frequently",
+        B: "Creating a healing environment and meeting psychological needs",
+        C: "Ignoring patient discomfort",
+        D: "Keeping patients isolated"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the effect of epinephrine during stress?",
+      options: {
+        A: "Lowers heart rate",
+        B: "Increases heart rate and dilates airways",
+        C: "Decreases blood sugar",
+        D: "Promotes water excretion"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "How do nurses help ventilated patients communicate?",
+      options: {
+        A: "Use shouting",
+        B: "Use non-verbal methods like communication boards",
+        C: "Avoid communication",
+        D: "Use complicated medical terms only"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the role of providing clocks and calendars in CCU?",
+      options: {
+        A: "To confuse patients",
+        B: "To help orientation and reduce anxiety",
+        C: "To increase stress",
+        D: "No role at all"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is NOT an effect of the fight or flight response?",
+      options: {
+        A: "Sweating",
+        B: "Tremors",
+        C: "Nausea",
+        D: "Decreased blood pressure"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "What is the purpose of allowing family presence in CCU?",
+      options: {
+        A: "Increase patient stress",
+        B: "Provide emotional support and reduce stress",
+        C: "Distract the nurses",
+        D: "None of the above"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which stage involves depletion of energy reserves?",
+      options: {
+        A: "Alarm",
+        B: "Resistance",
+        C: "Exhaustion",
+        D: "None"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Why do patients in CCU often have lack of sleep?",
+      options: {
+        A: "Environmental factors like noise, light, and alarms",
+        B: "Because they want to stay awake",
+        C: "Due to their family presence",
+        D: "Due to medications only"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which hormone is NOT released during stress response?",
+      options: {
+        A: "Norepinephrine",
+        B: "Epinephrine",
+        C: "Insulin",
+        D: "Cortisol"
+      },
+      correctAnswer: "C"
+    }
+  ]
+},
+            ventilated: {
+  title: "Caring for Mechanically Ventilated Patients",
+  questions: [
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "What is the main purpose of mechanical ventilation?",
+      options: {
+        a: "Cure lung disease",
+        b: "Facilitate O2 and CO2 transport between atmosphere and alveoli",
+        c: "Increase heart rate",
+        d: "Reduce blood pressure"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "Which of the following is NOT a purpose of mechanical ventilation?",
+      options: {
+        a: "Supporting pulmonary system until cause is corrected",
+        b: "Increasing patient comfort during respiration",
+        c: "Eliminating all lung infections",
+        d: "Reducing work of breathing"
+      },
+      correctAnswer: "c"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "Mechanical ventilation provides oxygen supplementation to:",
+      options: {
+        a: "Increase heart rate",
+        b: "Assure adequate alveolar minute ventilation",
+        c: "Cure infections",
+        d: "Increase blood sugar"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "What is the primary way mechanical ventilation delivers gas to the lungs?",
+      options: {
+        a: "Negative or positive pressure",
+        b: "Direct injection into blood",
+        c: "Oral medication",
+        d: "Intramuscular injection"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "Which of the following is a reason for supporting mechanical ventilation?",
+      options: {
+        a: "Kidney failure",
+        b: "Respiratory muscle dysfunction",
+        c: "High blood sugar",
+        d: "Liver cirrhosis"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "What does mechanical ventilation aim to reduce during respiration?",
+      options: {
+        a: "Blood pressure",
+        b: "Work of breathing",
+        c: "Oxygen level",
+        d: "Heart rate"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "Mechanical ventilation helps increase patient:",
+      options: {
+        a: "Weight",
+        b: "Comfort during respiration",
+        c: "Fever",
+        d: "Pain"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "What type of pressure is used by the most common ventilators?",
+      options: {
+        a: "Negative pressure",
+        b: "Positive pressure",
+        c: "Atmospheric pressure",
+        d: "Zero pressure"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "Mechanical ventilation can be used for patients with:",
+      options: {
+        a: "Flail chest",
+        b: "Diabetes",
+        c: "Migraine",
+        d: "Hyperthyroidism"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 1-10: General Concepts & Purposes",
+      question: "Which is a noninvasive ventilation method?",
+      options: {
+        a: "Endotracheal intubation",
+        b: "Nasal mask ventilation",
+        c: "Tracheostomy",
+        d: "Chest tube insertion"
+      },
+      correctAnswer: "b"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "Respiratory rate indication for mechanical ventilation is:",
+      options: {
+        a: "> 35 or < 10 breaths/min",
+        b: "20-25 breaths/min",
+        c: "5-8 breaths/min",
+        d: "None of the above"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "A tidal volume below what level indicates need for ventilation?",
+      options: {
+        a: "< 5 ml/kg",
+        b: "> 10 ml/kg",
+        c: "6-8 ml/kg",
+        d: "15 ml/kg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "Vital capacity < what ml/kg indicates ventilation support?",
+      options: {
+        a: "< 10-15 ml/kg",
+        b: "> 30 ml/kg",
+        c: "20-25 ml/kg",
+        d: "40-50 ml/kg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "Maximum inspiratory force less than which value suggests ventilatory failure?",
+      options: {
+        a: "< -20 cm H2O",
+        b: "> 50 cm H2O",
+        c: "0 cm H2O",
+        d: "-5 cm H2O"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "Normal pH range in arterial blood gases is:",
+      options: {
+        a: "7.35 – 7.45",
+        b: "7.00 – 7.10",
+        c: "7.50 – 7.60",
+        d: "6.8 – 7.0"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "PaO2 less than what indicates hypoxemia needing ventilation?",
+      options: {
+        a: "< 50 mmHg",
+        b: "> 80 mmHg",
+        c: "60-70 mmHg",
+        d: "100 mmHg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "PaCO2 above what value suggests need for ventilation?",
+      options: {
+        a: "> 50 mmHg",
+        b: "< 35 mmHg",
+        c: "30-40 mmHg",
+        d: "20 mmHg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "What is the critical PaO2/FiO2 ratio indicating respiratory failure?",
+      options: {
+        a: "< 250",
+        b: "> 300",
+        c: "400-500",
+        d: "> 475"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "Which of the following is NOT an indication for mechanical ventilation?",
+      options: {
+        a: "Respiratory muscle fatigue",
+        b: "COPD exacerbation",
+        c: "Acute hypoxemic respiratory failure",
+        d: "Hypertension"
+      },
+      correctAnswer: "d"
+    },
+    {
+      category: "✅ 11-20: Indications and Physiological Criteria",
+      question: "Neuromuscular diseases requiring ventilation include:",
+      options: {
+        a: "Guillain-Barré syndrome",
+        b: "Diabetes mellitus",
+        c: "Stroke without respiratory involvement",
+        d: "Hepatitis"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Noninvasive ventilation does NOT require:",
+      options: {
+        a: "Intubation",
+        b: "Nasal mask",
+        c: "Mouthpiece",
+        d: "Tight seal"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "An example of a negative pressure ventilator is:",
+      options: {
+        a: "Iron lung",
+        b: "CPAP machine",
+        c: "ETT with ventilator",
+        d: "Tracheostomy tube"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Positive pressure ventilation usually requires:",
+      options: {
+        a: "Intubation",
+        b: "Nasal cannula",
+        c: "Oxygen mask only",
+        d: "Chest tube"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Which ventilator type delivers a preset tidal volume?",
+      options: {
+        a: "Volume-cycled ventilator",
+        b: "Pressure-cycled ventilator",
+        c: "Time-cycled ventilator",
+        d: "Negative pressure ventilator"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Pressure-cycled ventilators are associated with decreased risk of:",
+      options: {
+        a: "Barotrauma",
+        b: "Volutrauma",
+        c: "Infection",
+        d: "Hypoxia"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Time-cycled ventilators are mostly used in:",
+      options: {
+        a: "Pediatric ICU",
+        b: "Adult ICU",
+        c: "Outpatient clinics",
+        d: "Home care"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Which ventilation mode is NOT commonly used for adults?",
+      options: {
+        a: "Time-cycled ventilation",
+        b: "Volume-cycled ventilation",
+        c: "Pressure-cycled ventilation",
+        d: "Positive pressure ventilation"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Positive pressure ventilation delivers air by:",
+      options: {
+        a: "Forcing positive pressure into lungs",
+        b: "Creating negative pressure outside chest",
+        c: "Passive diffusion",
+        d: "Oral suctioning"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Negative pressure ventilators work by:",
+      options: {
+        a: "Vacuum creating negative pressure around chest",
+        b: "Forcing air in via ETT",
+        c: "Oxygen mask only",
+        d: "Chest compression"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 21-30: Types of Mechanical Ventilation",
+      question: "Noninvasive ventilation is primarily used in:",
+      options: {
+        a: "Home care settings",
+        b: "ICU only",
+        c: "Operating rooms",
+        d: "Emergency rooms"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "FIO2 can be set from:",
+      options: {
+        a: "0.21 to 1.0",
+        b: "0.5 to 2.0",
+        c: "0.1 to 0.5",
+        d: "0.0 to 0.21"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Normal tidal volume is:",
+      options: {
+        a: "6-10 ml/kg",
+        b: "15-20 ml/kg",
+        c: "2-4 ml/kg",
+        d: "20-25 ml/kg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Respiratory rate on ventilator is commonly set between:",
+      options: {
+        a: "10-20 breaths per minute",
+        b: "25-30 breaths per minute",
+        c: "5-9 breaths per minute",
+        d: "30-40 breaths per minute"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Typical inspiratory time for adults is:",
+      options: {
+        a: "0.7 to 1.0 seconds",
+        b: "2-3 seconds",
+        c: "0.1 to 0.3 seconds",
+        d: "3-5 seconds"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "The usual I:E ratio in ventilation is:",
+      options: {
+        a: "1:2 or 1:3",
+        b: "2:1",
+        c: "1:1",
+        d: "3:1"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Peak inspiratory flow rate is measured in:",
+      options: {
+        a: "Liters per minute",
+        b: "Milliliters per minute",
+        c: "Milliliters per hour",
+        d: "Liters per hour"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "The “sigh” breath volume is usually:",
+      options: {
+        a: "1.5 to 2 times the tidal volume",
+        b: "Equal to tidal volume",
+        c: "Half tidal volume",
+        d: "Twice respiratory rate"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Minute ventilation (VE) is calculated as:",
+      options: {
+        a: "Tidal volume × Respiratory rate",
+        b: "Tidal volume + Respiratory rate",
+        c: "Tidal volume / Respiratory rate",
+        d: "Respiratory rate / tidal volume"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Peak airway pressure (Paw) depends on:",
+      options: {
+        a: "Airway resistance, lung compliance, chest wall factors",
+        b: "Blood pressure",
+        c: "Heart rate",
+        d: "Oxygen saturation"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 31-40: Ventilator Settings & Parameters",
+      question: "Plateau pressure is measured by:",
+      options: {
+        a: "Applying an end-inspiratory pause on ventilator",
+        b: "Pulse oximeter",
+        c: "Blood pressure cuff",
+        d: "Chest X-ray"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "High pressure alarm may be caused by:",
+      options: {
+        a: "Increased secretions",
+        b: "Disconnected tubing",
+        c: "Leak in ETT cuff",
+        d: "Low respiratory rate"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "What nursing action should be taken for high pressure alarm?",
+      options: {
+        a: "Suction patient",
+        b: "Disconnect tubing",
+        c: "Decrease FiO2",
+        d: "Stop ventilation"
+      },
+      correctAnswer: "a"
+    },
+   {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "Low pressure alarm indicates:",
+      options: {
+        a: "Disconnected tubing or leak in system",
+        b: "Bronchospasm",
+        c: "Patient biting ETT",
+        d: "Increased secretions"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "Nursing intervention for low pressure alarm includes:",
+      options: {
+        a: "Secure all connections and check cuff pressure",
+        b: "Increase tidal volume",
+        c: "Decrease respiratory rate",
+        d: "Suction patient"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "High respiratory rate alarm can be caused by:",
+      options: {
+        a: "Patient anxiety, pain, or fever",
+        b: "Disconnected tubing",
+        c: "Ventilator failure",
+        d: "Leak in ventilator circuit"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "Intervention for apnea alarm includes:",
+      options: {
+        a: "Encouraging patient to breathe or giving a breath",
+        b: "Increasing FiO2",
+        c: "Suctioning patient",
+        d: "Ignoring alarm"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "Oxygen alarm may indicate:",
+      options: {
+        a: "Oxygen supply failure",
+        b: "Patient distress",
+        c: "High secretions",
+        d: "Low tidal volume"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "If ventilator becomes inoperative, nurse should:",
+      options: {
+        a: "Manually ventilate patient",
+        b: "Increase tidal volume",
+        c: "Lower respiratory rate",
+        d: "Wait for repair"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "If patient is biting the ETT causing alarms, nurse should:",
+      options: {
+        a: "Place an oral airway",
+        b: "Increase FiO2",
+        c: "Deflate cuff",
+        d: "Disconnect ventilator"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 41-50: Ventilator Alarms & Troubleshooting",
+      question: "Bronchospasm causing alarm should be treated with:",
+      options: {
+        a: "Bronchodilators",
+        b: "Antibiotics",
+        c: "Corticosteroids only",
+        d: "Antipyretics"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Weaning from mechanical ventilation means:",
+      options: {
+        a: "Gradual removal of ventilatory support to spontaneous breathing",
+        b: "Immediate extubation",
+        c: "Increasing ventilation settings",
+        d: "Discontinuing oxygen therapy"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Which method is NOT used for weaning?",
+      options: {
+        a: "T-piece trial",
+        b: "Continuous positive airway pressure (CPAP)",
+        c: "Synchronized intermittent mandatory ventilation (SIMV)",
+        d: "Chest tube insertion"
+      },
+      correctAnswer: "d"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "One criterion for weaning readiness is:",
+      options: {
+        a: "Awake and alert patient",
+        b: "Hypotension",
+        c: "pH < 7.2",
+        d: "PaO2 < 50 mmHg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "During weaning, if patient shows increased respiratory rate > 30/min, nurse should:",
+      options: {
+        a: "Stop weaning trial",
+        b: "Continue weaning",
+        c: "Increase FiO2",
+        d: "Ignore"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Which is a sign of weaning intolerance?",
+      options: {
+        a: "Restlessness and SaO2 < 90%",
+        b: "Calm and alert",
+        c: "Stable heart rate",
+        d: "Normal respiratory rate"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "The spontaneous breathing trial (SBT) duration is recommended to be:",
+      options: {
+        a: "15-30 minutes but no longer than 120 minutes",
+        b: "5 minutes",
+        c: "4 hours",
+        d: "Overnight"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Complication of mechanical ventilation includes all EXCEPT:",
+      options: {
+        a: "Barotrauma",
+        b: "Volutrauma",
+        c: "Kidney failure",
+        d: "Oxygen toxicity"
+      },
+      correctAnswer: "c"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Barotrauma is caused by:",
+      options: {
+        a: "High airway pressures",
+        b: "Low tidal volumes",
+        c: "Decreased FiO2",
+        d: "Patient coughing"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Ventilator-associated pneumonia (VAP) prevention includes:",
+      options: {
+        a: "Elevate head of bed to 30-45 degrees",
+        b: "Keep patient supine",
+        c: "Avoid suctioning",
+        d: "Limit oral care"
+      },
+      correctAnswer: "a"
+    },
+    {
+      category: "✅ 51-60: Weaning & Complications",
+      question: "Which is a nursing priority during mechanical ventilation?",
+      options: {
+        a: "Monitor ventilator settings and patient response",
+        b: "Only document observations",
+        c: "Disconnect ventilator frequently",
+        d: "Avoid checking alarms"
+      },
+      correctAnswer: "a"
+    }
+  ]
+},
+            asthma: {
+  title: "Asthma",
+  questions: [
+    {
+      question: "What is the main characteristic of acute asthma?",
+      options: {
+        A: "Permanent airway narrowing",
+        B: "Hyper-responsiveness and reversible airway narrowing",
+        C: "Infection of the airway",
+        D: "Irreversible bronchospasm"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is NOT a common trigger of asthma?",
+      options: {
+        A: "Allergens",
+        B: "Air pollution",
+        C: "Furred animals",
+        D: "Bacterial infection"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "What causes bronchospasm in acute asthma?",
+      options: {
+        A: "Smooth muscle relaxation",
+        B: "Constriction of smooth muscles around airways",
+        C: "Decreased mucus production",
+        D: "Infection in bronchioles"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "The release of which chemical mediators leads to airway inflammation in asthma?",
+      options: {
+        A: "Dopamine and serotonin",
+        B: "Histamine and prostaglandins",
+        C: "Insulin and glucagon",
+        D: "Acetylcholine and epinephrine"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which symptom is NOT typical of an acute asthmatic attack?",
+      options: {
+        A: "Wheezing",
+        B: "Cyanosis",
+        C: "Bradycardia",
+        D: "Use of accessory respiratory muscles"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "What is the primary function of short-acting beta-2 adrenergic agonists like Salbutamol?",
+      options: {
+        A: "Reduce inflammation",
+        B: "Relieve acute symptoms by relaxing airway muscles",
+        C: "Kill bacteria in lungs",
+        D: "Thin mucus secretions"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which route is commonly used to administer Salbutamol during an acute asthma attack?",
+      options: {
+        A: "Oral tablet",
+        B: "Intravenous injection",
+        C: "Nebulizer inhalation",
+        D: "Subcutaneous injection"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Why is oxygen therapy given during an acute asthmatic attack?",
+      options: {
+        A: "To increase CO2 levels",
+        B: "To avoid hypoxemia and improve oxygen saturation",
+        C: "To reduce airway inflammation",
+        D: "To dilate blood vessels"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the role of systemic corticosteroids in asthma management?",
+      options: {
+        A: "Bronchodilation",
+        B: "Suppress airway inflammation",
+        C: "Increase mucus production",
+        D: "Cause bronchoconstriction"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Magnesium sulfate given intravenously in acute asthma acts as a:",
+      options: {
+        A: "Diuretic",
+        B: "Smooth muscle relaxant and bronchodilator",
+        C: "Antibiotic",
+        D: "Anti-inflammatory steroid"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is considered a long-term control medication for asthma?",
+      options: {
+        A: "Inhaled corticosteroids",
+        B: "Short-acting beta-2 agonists",
+        C: "Oxygen therapy",
+        D: "Magnesium sulfate"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which of these is a common clinical manifestation of asthma?",
+      options: {
+        A: "Bradycardia",
+        B: "Tachypnea",
+        C: "Hypotension",
+        D: "Jaundice"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which muscle group is commonly used during an acute asthma attack to aid breathing?",
+      options: {
+        A: "Abdominal muscles",
+        B: "Accessory muscles of neck and shoulder",
+        C: "Facial muscles",
+        D: "Lower limb muscles"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the main pathophysiological feature of asthma?",
+      options: {
+        A: "Irreversible airway damage",
+        B: "Airway hyper-responsiveness and inflammation",
+        C: "Bacterial infection in lungs",
+        D: "Lung fibrosis"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is NOT a psychosocial factor contributing to pain or discomfort in ICU patients with asthma?",
+      options: {
+        A: "Anxiety",
+        B: "Separation from family",
+        C: "Continuous light",
+        D: "Fear of disability"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "The use of accessory muscles during breathing indicates:",
+      options: {
+        A: "Normal breathing",
+        B: "Respiratory distress",
+        C: "Relaxed respiratory state",
+        D: "Hypothermia"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which assessment is crucial in the initial management of an asthmatic attack?",
+      options: {
+        A: "Blood sugar level",
+        B: "ABC assessment (Airway, Breathing, Circulation)",
+        C: "Liver function test",
+        D: "Urinalysis"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the significance of tachycardia during an asthmatic attack?",
+      options: {
+        A: "Sign of hypoxemia or stress",
+        B: "Normal heart rate",
+        C: "Indicates infection",
+        D: "Suggests dehydration only"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "In status asthmaticus, which of the following is necessary?",
+      options: {
+        A: "Only bronchodilators",
+        B: "Intubation and mechanical ventilation if unresponsive",
+        C: "Oral antibiotics",
+        D: "Discontinuing all medications"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which environmental control is important for asthma patients?",
+      options: {
+        A: "Avoiding exposure to pollen and dust",
+        B: "Increasing exposure to tobacco smoke",
+        C: "Consuming more salt",
+        D: "Avoiding water intake"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which of the following is a side effect of bronchodilators?",
+      options: {
+        A: "Increased heart rate",
+        B: "Weight gain",
+        C: "Hypotension",
+        D: "Sedation"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What breathing technique is recommended to asthma patients?",
+      options: {
+        A: "Diaphragmatic and pursed-lip breathing",
+        B: "Mouth breathing only",
+        C: "Shallow rapid breathing",
+        D: "Holding breath for long periods"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What physical sign indicates severe respiratory distress in asthma?",
+      options: {
+        A: "Cyanosis",
+        B: "Warm skin",
+        C: "Bradycardia",
+        D: "Increased appetite"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which medication is a short-acting beta-2 agonist?",
+      options: {
+        A: "Salbutamol",
+        B: "Prednisolone",
+        C: "Theophylline",
+        D: "Magnesium sulfate"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "In acute asthma, why is monitoring vital signs crucial?",
+      options: {
+        A: "To detect deterioration early",
+        B: "To check for diabetes",
+        C: "To assess liver function",
+        D: "For blood transfusion needs"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What is the role of systemic corticosteroids during an acute attack?",
+      options: {
+        A: "Immediate bronchodilation",
+        B: "Long-term control of airway inflammation",
+        C: "Fluid retention",
+        D: "Increase mucus production"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is a contraindication to using intravenous beta-2 agonists?",
+      options: {
+        A: "Severe asthma unresponsive to inhaled meds",
+        B: "Hypersensitivity",
+        C: "Mild cough",
+        D: "Controlled asthma"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Why is postural drainage helpful in asthma patients?",
+      options: {
+        A: "To prevent infection",
+        B: "To assist in expelling mucus",
+        C: "To reduce fever",
+        D: "To lower blood pressure"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What does the presence of nasal mucosa edema suggest in an asthma patient?",
+      options: {
+        A: "Allergy or irritation",
+        B: "Bacterial infection",
+        C: "Lung cancer",
+        D: "Heart failure"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which of the following is NOT part of nursing assessment for asthma?",
+      options: {
+        A: "Respiratory rate and depth",
+        B: "Auscultation for wheezing",
+        C: "Blood glucose level",
+        D: "Use of accessory muscles"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which medication class is considered first-line for long-term asthma control?",
+      options: {
+        A: "Inhaled corticosteroids",
+        B: "Antibiotics",
+        C: "Oral antihistamines",
+        D: "Beta blockers"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "In asthma, wheezing is caused by:",
+      options: {
+        A: "Airway narrowing and obstruction",
+        B: "Fluid in alveoli",
+        C: "Pleural effusion",
+        D: "Bronchial dilation"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Anxiety in an asthma patient can:",
+      options: {
+        A: "Exacerbate symptoms",
+        B: "Cure asthma",
+        C: "Cause lung infection",
+        D: "Decrease bronchospasm"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What is the main goal of oxygen therapy in asthma?",
+      options: {
+        A: "Increase oxygen supply and prevent hypoxia",
+        B: "Decrease oxygen levels",
+        C: "Remove CO2 from blood",
+        D: "Increase mucus production"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which statement about Status Asthmaticus is TRUE?",
+      options: {
+        A: "It responds well to initial bronchodilator therapy",
+        B: "It requires aggressive oxygenation and ventilation support",
+        C: "It is a mild asthma attack",
+        D: "It is unrelated to asthma"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What physical exam sign indicates cyanosis?",
+      options: {
+        A: "Blue discoloration of lips and fingers",
+        B: "Redness of skin",
+        C: "Yellowing of eyes",
+        D: "Pale skin"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which of the following is NOT a trigger of asthma?",
+      options: {
+        A: "Tobacco smoke",
+        B: "Strong smells",
+        C: "Exercise",
+        D: "Antibiotics"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "What nursing position is recommended for asthmatic patients in acute attack?",
+      options: {
+        A: "Supine",
+        B: "High Fowler’s position",
+        C: "Trendelenburg",
+        D: "Prone"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What should be included in patient education for asthma?",
+      options: {
+        A: "Avoid triggers and adhere to medications",
+        B: "Stop medications when feeling better",
+        C: "Smoke to relieve symptoms",
+        D: "Avoid breathing exercises"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Why is intubation sometimes needed in severe asthma?",
+      options: {
+        A: "To provide airway support when breathing is inadequate",
+        B: "To cure asthma",
+        C: "To prevent infection",
+        D: "For feeding purposes"
+      },
+      correctAnswer: "A"
+    }
+  ]
+},
+            acs: {
+                title: "Acute Coronary Syndrome (ACS)",
+                questions: [
+                    {
+                        category: "✅ 1. General Overview",
+                        question: "What is the underlying cause of Acute Coronary Syndrome (ACS)?",
+                        options: {
+                            A: "Viral infection",
+                            B: "Plaque rupture and coronary artery occlusion",
+                            C: "Congenital defect",
+                            D: "Valve stenosis"
+                        },
+                        correctAnswer: "B",
+                        explanation: "ACS is caused by rupture of atherosclerotic plaque leading to coronary artery occlusion."
+                    },
+                    {
+                        category: "✅ 1. General Overview",
+                        question: "Which of the following is NOT a type of ACS?",
+                        options: {
+                            A: "Stable angina",
+                            B: "Unstable angina",
+                            C: "Myocardial infarction",
+                            D: "NSTEMI"
+                        },
+                        correctAnswer: "A",
+                        explanation: "Stable angina is not considered ACS as it's predictable and relieved by rest/NTG."
+                    },
+                    {
+                        category: "✅ 1. General Overview",
+                        question: "ACS typically results in:",
+                        options: {
+                            A: "Increased oxygen supply to myocardium",
+                            B: "Acute ischemia due to oxygen deprivation",
+                            C: "Pulmonary edema",
+                            D: "Cardiomyopathy"
+                        },
+                        correctAnswer: "B",
+                        explanation: "ACS causes acute myocardial ischemia from reduced oxygen supply."
+                    },
+                    {
+                        category: "✅ 2. Risk Factors",
+                        question: "Which of the following is a non-modifiable risk factor for CAD?",
+                        options: {
+                            A: "Smoking",
+                            B: "Diabetes",
+                            C: "Age >60",
+                            D: "Obesity"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Age is a non-modifiable risk factor for coronary artery disease."
+                    },
+                    {
+                        category: "✅ 2. Risk Factors",
+                        question: "Which diet increases risk of coronary artery disease?",
+                        options: {
+                            A: "Low-fat diet",
+                            B: "High-protein diet",
+                            C: "High-fat diet",
+                            D: "High-fiber diet"
+                        },
+                        correctAnswer: "C",
+                        explanation: "High-fat diets contribute to atherosclerosis development."
+                    },
+                    {
+                        category: "✅ 2. Risk Factors",
+                        question: "Which of the following is a major modifiable risk factor?",
+                        options: {
+                            A: "Gender",
+                            B: "Family history",
+                            C: "Smoking",
+                            D: "Age"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Smoking is a major modifiable risk factor for CAD."
+                    },
+                    {
+                        category: "✅ 3. Angina Pectoris",
+                        question: "What is the most common cause of angina pectoris?",
+                        options: {
+                            A: "Myocarditis",
+                            B: "Coronary artery spasm",
+                            C: "Reversible myocardial ischemia",
+                            D: "Pericardial effusion"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Angina results from reversible myocardial ischemia."
+                    },
+                    {
+                        category: "✅ 3. Angina Pectoris",
+                        question: "Where is angina pain usually located?",
+                        options: {
+                            A: "Right lower chest",
+                            B: "Substernal area",
+                            C: "Abdomen",
+                            D: "Right arm"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Classic angina presents as substernal chest discomfort."
+                    },
+                    {
+                        category: "✅ 3. Angina Pectoris",
+                        question: "Which type of angina is relieved by rest or sublingual nitroglycerin?",
+                        options: {
+                            A: "Unstable angina",
+                            B: "Variant angina",
+                            C: "Stable angina",
+                            D: "Pre-infarction angina"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Stable angina is relieved by rest or nitroglycerin."
+                    },
+                    {
+                        category: "✅ 4. Types of Angina",
+                        question: "Which of the following is a feature of unstable angina?",
+                        options: {
+                            A: "Predictable onset",
+                            B: "Pain relieved by rest",
+                            C: "Pain occurs at rest and lasts >15 min",
+                            D: "Pain occurs only during exertion"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Unstable angina involves prolonged pain at rest."
+                    },
+                    {
+                        category: "✅ 4. Types of Angina",
+                        question: "Which type of angina is associated with ST-segment elevation?",
+                        options: {
+                            A: "Stable angina",
+                            B: "Variant angina",
+                            C: "Unstable angina",
+                            D: "Silent angina"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Variant (Prinzmetal's) angina causes transient ST elevation."
+                    },
+                    {
+                        category: "✅ 4. Types of Angina",
+                        question: "Variant angina typically occurs:",
+                        options: {
+                            A: "During exercise",
+                            B: "After meals",
+                            C: "Between midnight and 8 AM",
+                            D: "In the afternoon"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Variant angina often occurs at rest, especially early morning."
+                    },
+                    {
+                        category: "✅ 5. Diagnostic Tests",
+                        question: "What is the first-line diagnostic test for chest pain in the ER?",
+                        options: {
+                            A: "Echocardiogram",
+                            B: "12-lead ECG",
+                            C: "MRI",
+                            D: "Chest X-ray"
+                        },
+                        correctAnswer: "B",
+                        explanation: "12-lead ECG is the first test for suspected ACS."
+                    },
+                    {
+                        category: "✅ 5. Diagnostic Tests",
+                        question: "Which biomarker is most specific for myocardial infarction?",
+                        options: {
+                            A: "Myoglobin",
+                            B: "CK",
+                            C: "Troponin I or T",
+                            D: "LDH"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Troponin is highly specific for myocardial injury."
+                    },
+                    {
+                        category: "✅ 5. Diagnostic Tests",
+                        question: "What is the purpose of coronary angiography?",
+                        options: {
+                            A: "Reduce chest pain",
+                            B: "Detect lung infection",
+                            C: "Visualize coronary artery blockage",
+                            D: "Monitor blood glucose"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Angiography directly visualizes coronary artery blockages."
+                    },
+                    {
+                        category: "✅ 6. Nursing Admission & Assessment",
+                        question: "What is the first nursing action in suspected ACS?",
+                        options: {
+                            A: "Give aspirin",
+                            B: "Put patient on cardiac monitor",
+                            C: "Start an IV line",
+                            D: "Administer nitroglycerin"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Immediate cardiac monitoring detects life-threatening arrhythmias."
+                    },
+                    {
+                        category: "✅ 6. Nursing Admission & Assessment",
+                        question: "NOPQRST pain assessment includes all EXCEPT:",
+                        options: {
+                            A: "Onset",
+                            B: "Palliative factors",
+                            C: "Quantity of medication",
+                            D: "Region & radiation"
+                        },
+                        correctAnswer: "C",
+                        explanation: "NOPQRST assesses pain characteristics, not medication quantity."
+                    },
+                    {
+                        category: "✅ 6. Nursing Admission & Assessment",
+                        question: "The patient describes chest pain radiating to left arm and jaw. This is:",
+                        options: {
+                            A: "GI pain",
+                            B: "Musculoskeletal pain",
+                            C: "Myocardial ischemia",
+                            D: "Pulmonary embolism"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Radiation to left arm/jaw is classic for myocardial ischemia."
+                    },
+                    {
+                        category: "✅ 7. Medications",
+                        question: "Why is sublingual nitroglycerin preferred?",
+                        options: {
+                            A: "Faster action through oral mucosa",
+                            B: "Longer duration",
+                            C: "Fewer side effects",
+                            D: "Cheaper"
+                        },
+                        correctAnswer: "A",
+                        explanation: "Sublingual route provides rapid absorption and quick effect."
+                    },
+                    {
+                        category: "✅ 7. Medications",
+                        question: "What is a common side effect of nitroglycerin?",
+                        options: {
+                            A: "Hypertension",
+                            B: "Bradycardia",
+                            C: "Hypotension",
+                            D: "Fever"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Nitroglycerin causes vasodilation leading to hypotension."
+                    },
+                    {
+                        category: "✅ 7. Medications",
+                        question: "What is the dose of aspirin given during chest pain?",
+                        options: {
+                            A: "50 mg",
+                            B: "81 mg",
+                            C: "162-325 mg",
+                            D: "500 mg"
+                        },
+                        correctAnswer: "C",
+                        explanation: "162-325 mg aspirin is given for its antiplatelet effect."
+                    },
+                    {
+                        category: "✅ 7. Medications",
+                        question: "When is IV morphine given to ACS patients?",
+                        options: {
+                            A: "After 1 tablet of nitroglycerin",
+                            B: "When pain persists after 3 nitroglycerin tablets",
+                            C: "Before ECG",
+                            D: "Immediately upon arrival"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Morphine is given for refractory pain after 3 NTG doses."
+                    },
+                    {
+                        category: "✅ 7. Medications",
+                        question: "Which of the following is a nursing responsibility after morphine administration?",
+                        options: {
+                            A: "Monitor ECG only",
+                            B: "Monitor blood glucose",
+                            C: "Monitor BP and respiratory rate",
+                            D: "Give high-fat food"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Morphine can cause respiratory depression and hypotension."
+                    },
+                    {
+                        category: "✅ 8. Environment & Monitoring",
+                        question: "What is the best nursing intervention to reduce patient anxiety?",
+                        options: {
+                            A: "Avoid speaking",
+                            B: "Provide oxygen",
+                            C: "Provide calm environment and explanation",
+                            D: "Administer sedatives"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Calm environment reduces sympathetic stimulation and oxygen demand."
+                    },
+                    {
+                        category: "✅ 8. Environment & Monitoring",
+                        question: "Which parameter is not continuously monitored in ACS?",
+                        options: {
+                            A: "ECG",
+                            B: "Oxygen saturation",
+                            C: "Urine color",
+                            D: "Vital signs"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Urine color is not a standard monitoring parameter in ACS."
+                    },
+                    {
+                        category: "✅ 9. Patient Education",
+                        question: "What should the patient do if chest pain continues after 3 nitroglycerin tablets?",
+                        options: {
+                            A: "Wait 10 more minutes",
+                            B: "Take aspirin",
+                            C: "Call emergency services immediately",
+                            D: "Eat food"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Persistent pain after 3 NTG doses requires emergency care."
+                    },
+                    {
+                        category: "✅ 9. Patient Education",
+                        question: "Nitroglycerin tablets should be stored in:",
+                        options: {
+                            A: "Transparent plastic",
+                            B: "Dark-colored glass bottle",
+                            C: "Aluminum foil",
+                            D: "Refrigerator"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Dark glass protects nitroglycerin from light degradation."
+                    },
+                    {
+                        category: "✅ 9. Patient Education",
+                        question: "Cotton should not be kept inside nitroglycerin bottle because:",
+                        options: {
+                            A: "It causes infection",
+                            B: "It absorbs the drug",
+                            C: "It increases humidity",
+                            D: "It reacts with the glass"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Cotton absorbs nitroglycerin, reducing drug potency."
+                    },
+                    {
+                        category: "✅ 9. Patient Education",
+                        question: "Patients should avoid all the following EXCEPT:",
+                        options: {
+                            A: "Caffeine",
+                            B: "Cold weather",
+                            C: "Regular walking",
+                            D: "Smoking"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Regular walking is encouraged as part of cardiac rehabilitation."
+                    },
+                    {
+                        category: "✅ 9. Patient Education",
+                        question: "Which of the following is advised post-discharge?",
+                        options: {
+                            A: "Avoid all physical activity",
+                            B: "Join weight gain program",
+                            C: "Start a smoking cessation plan",
+                            D: "Eat high-fat meals"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Smoking cessation is crucial for secondary prevention."
+                    },
+                    {
+                        category: "✅ 10. Nursing Diagnoses",
+                        question: "What is the priority nursing diagnosis in ACS?",
+                        options: {
+                            A: "Risk for infection",
+                            B: "Risk for constipation",
+                            C: "Acute pain related to myocardial ischemia",
+                            D: "Impaired urinary elimination"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Relieving ischemic pain is the immediate priority."
+                    },
+                    {
+                        category: "✅ 10. Nursing Diagnoses",
+                        question: "Which diagnosis is related to inability to perform tasks due to pain?",
+                        options: {
+                            A: "Risk for fall",
+                            B: "Activity intolerance",
+                            C: "Disturbed sleep pattern",
+                            D: "Risk for bleeding"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Activity intolerance results from pain-induced limitations."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "What is the best exercise for patients with angina?",
+                        options: {
+                            A: "Running",
+                            B: "Swimming",
+                            C: "Walking",
+                            D: "Weightlifting"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Walking provides cardiovascular benefits without excessive strain."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "When should the patient avoid exercising?",
+                        options: {
+                            A: "After meals",
+                            B: "In early morning",
+                            C: "After sleep",
+                            D: "Before meals"
+                        },
+                        correctAnswer: "A",
+                        explanation: "Exercise after meals increases myocardial oxygen demand."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "Why should the patient avoid Valsalva maneuver?",
+                        options: {
+                            A: "Increases oxygen",
+                            B: "Can trigger angina or arrhythmias",
+                            C: "Improves blood pressure",
+                            D: "Relieves pain"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Valsalva increases intrathoracic pressure and reduces cardiac output."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "When should the patient seek medical attention?",
+                        options: {
+                            A: "After 3 hours of pain",
+                            B: "If pain relieved by one nitroglycerin",
+                            C: "If pain persists after 3 nitroglycerin tablets",
+                            D: "After eating fatty meal"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Persistent pain after 3 NTG doses indicates possible MI."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "Which vitamin should be avoided in high doses due to vascular risks?",
+                        options: {
+                            A: "Vitamin A",
+                            B: "Vitamin D",
+                            C: "Vitamin E",
+                            D: "Vitamin C"
+                        },
+                        correctAnswer: "C",
+                        explanation: "High-dose vitamin E may increase cardiovascular risks."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "Which of these can trigger variant angina?",
+                        options: {
+                            A: "Salt",
+                            B: "Water",
+                            C: "Cocaine",
+                            D: "Calcium"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Cocaine is a known trigger for coronary artery spasm."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "Which drug class is helpful in treating variant angina?",
+                        options: {
+                            A: "Beta-blockers",
+                            B: "Calcium channel blockers",
+                            C: "Diuretics",
+                            D: "Antibiotics"
+                        },
+                        correctAnswer: "B",
+                        explanation: "CCBs prevent coronary artery spasm in variant angina."
+                    },
+                    {
+                        category: "✅ 11. Miscellaneous",
+                        question: "Which sign suggests coronary artery spasm in variant angina?",
+                        options: {
+                            A: "ST depression",
+                            B: "ST elevation",
+                            C: "Bradycardia",
+                            D: "Flat T wave"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Transient ST elevation indicates coronary artery spasm."
+                    }
+                ]
+            },
+            
+           arf: {
+  title: "Acute Respiratory Failure",
+  questions: [
+    {
+      question: "What is the PaO2 level indicative of acute lung failure?",
+      options: {
+        a: ">80 mm Hg",
+        b: "55 mm Hg or less",
+        c: "60-70 mm Hg",
+        d: "100 mm Hg"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which of the following PaCO2 values is consistent with acute lung failure?",
+      options: {
+        a: "<35 mm Hg",
+        b: "40 mm Hg",
+        c: ">50 mm Hg or normal",
+        d: "30-40 mm Hg"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "A pH less than what value indicates acidosis in ALF?",
+      options: {
+        a: "7.45",
+        b: "7.40",
+        c: "7.35",
+        d: "7.50"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Which of the following is an extrapulmonary cause of acute lung failure?",
+      options: {
+        a: "Pulmonary edema",
+        b: "Guillain-Barré syndrome",
+        c: "Pulmonary embolism",
+        d: "Bronchitis"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Sedative overdose leading to respiratory failure is a disorder of which system?",
+      options: {
+        a: "Peripheral nervous system",
+        b: "Central nervous system",
+        c: "Pulmonary circulation",
+        d: "Alveolar membrane"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which spinal cord disorder can cause acute lung failure?",
+      options: {
+        a: "Amyotrophic lateral sclerosis",
+        b: "Guillain-Barré syndrome",
+        c: "Spinal cord trauma (quadriplegia)",
+        d: "Myasthenia gravis"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Myasthenia gravis causes ALF by affecting:",
+      options: {
+        a: "Pulmonary vessels",
+        b: "Thorax",
+        c: "Neuromuscular system",
+        d: "Upper airway"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Massive obesity is classified under which cause of ALF?",
+      options: {
+        a: "Neuromuscular disorders",
+        b: "Thorax or chest wall disorders",
+        c: "Alveolar disorders",
+        d: "Pulmonary circulation disorders"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Pneumothorax causes ALF by affecting which area?",
+      options: {
+        a: "Pleura",
+        b: "Alveoli",
+        c: "Airways",
+        d: "Pulmonary circulation"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Chronic obstructive pulmonary disease (COPD) is classified as:",
+      options: {
+        a: "Large airway disorder",
+        b: "Small airway disorder",
+        c: "Alveolar-capillary membrane disorder",
+        d: "Pulmonary circulation disorder"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which of the following is an alveolar disorder causing ALF?",
+      options: {
+        a: "Pulmonary emphysema",
+        b: "Guillain-Barré syndrome",
+        c: "Spinal cord trauma",
+        d: "Pneumothorax"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Pulmonary edema causes ALF by affecting:",
+      options: {
+        a: "Airways",
+        b: "Pulmonary circulation",
+        c: "Pleura",
+        d: "Thorax"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What type of ALF is characterized by PaO2 ≤ 55 mm Hg and normal or low PaCO2?",
+      options: {
+        a: "Hypoxemic or oxygenation failure (type I)",
+        b: "Hypercapnic respiratory failure (type II)",
+        c: "Combined failure (type III)",
+        d: "None of the above"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Hypercapnic respiratory failure (type II) is characterized by:",
+      options: {
+        a: "PaCO2 > 50 mm Hg",
+        b: "PaO2 > 80 mm Hg",
+        c: "Normal pH > 7.35",
+        d: "PaCO2 < 35 mm Hg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What is a common cause of hypoxemic respiratory failure?",
+      options: {
+        a: "Decreased FiO2",
+        b: "Excessive ventilation",
+        c: "Increased oxygen delivery",
+        d: "Hypoventilation"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Which is NOT a cause of hypercapnia in ALF?",
+      options: {
+        a: "Increased work of breathing",
+        b: "Pneumothorax",
+        c: "Overfeeding",
+        d: "High oxygen saturation"
+      },
+      correctAnswer: "d"
+    },
+    {
+      question: "Which position improves oxygenation in unilateral lung disease?",
+      options: {
+        a: "Good lung down lateral position",
+        b: "Prone position",
+        c: "Supine position",
+        d: "Flat position"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What is the priority nursing diagnosis for ALF patients?",
+      options: {
+        a: "Ineffective airway clearance",
+        b: "Risk for skin breakdown",
+        c: "Deficient knowledge",
+        d: "Imbalanced nutrition"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Chest physiotherapy for ALF includes:",
+      options: {
+        a: "Incentive spirometry",
+        b: "Bed rest only",
+        c: "Avoiding cough exercises",
+        d: "Limited hydration"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Which medication is used to reduce airway inflammation in ALF?",
+      options: {
+        a: "Antibiotics",
+        b: "Steroids",
+        c: "Bronchodilators",
+        d: "Analgesics"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which disorder is NOT a neuromuscular cause of ALF?",
+      options: {
+        a: "Myasthenia gravis",
+        b: "Organophosphate poisoning",
+        c: "Pulmonary emphysema",
+        d: "Botulism"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "What type of chest disorder can cause extrapulmonary ALF?",
+      options: {
+        a: "Acute bronchitis",
+        b: "Fibrothorax",
+        c: "Pulmonary fibrosis",
+        d: "Pneumonia"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which pleural disorder is considered extrapulmonary and can lead to ALF?",
+      options: {
+        a: "Pulmonary edema",
+        b: "Pneumothorax",
+        c: "Cystic fibrosis",
+        d: "Pulmonary embolism"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What is an intrapulmonary airway disorder?",
+      options: {
+        a: "Guillain-Barré syndrome",
+        b: "Acute laryngitis",
+        c: "Fibrothorax",
+        d: "Sleep apnea"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which of the following is a small airway disorder causing ALF?",
+      options: {
+        a: "Bronchial asthma",
+        b: "Guillain-Barré syndrome",
+        c: "Myasthenia gravis",
+        d: "Chest trauma"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Which alveolar disorder can cause ALF?",
+      options: {
+        a: "Multiple sclerosis",
+        b: "Pulmonary emphysema",
+        c: "Brain trauma",
+        d: "Spinal cord injury"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What pulmonary circulation disorder can cause ALF?",
+      options: {
+        a: "Pulmonary embolism",
+        b: "Bronchitis",
+        c: "Poliomyelitis",
+        d: "Acute laryngitis"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What is a common cause of alveolar-capillary membrane disorder leading to ALF?",
+      options: {
+        a: "Inhalation of toxic gases",
+        b: "Guillain-Barré syndrome",
+        c: "Fibrothorax",
+        d: "Spinal cord trauma"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Which type of ALF is characterized by PaO2 ≤ 55 mm Hg, normal or low PaCO2, and pH <7.35?",
+      options: {
+        a: "Type II hypercapnic failure",
+        b: "Type I hypoxemic failure",
+        c: "Type III combined failure",
+        d: "Chronic lung failure"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which is NOT a cause of hypoxemia in type I ALF?",
+      options: {
+        a: "Decreased FiO2",
+        b: "Hypoventilation",
+        c: "Increased CO2 elimination",
+        d: "Ventilation/perfusion mismatch"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "What are the common arterial blood gas changes in type II respiratory failure?",
+      options: {
+        a: "Low PaO2, high PaCO2, pH <7.30",
+        b: "High PaO2, low PaCO2, pH >7.45",
+        c: "Normal PaO2, normal PaCO2, pH 7.4",
+        d: "Low PaO2, low PaCO2, pH <7.35"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What is NOT a factor contributing to hypercapnia in type II ALF?",
+      options: {
+        a: "Lack of respiratory drive",
+        b: "Increased dead space in COPD",
+        c: "Pneumothorax",
+        d: "Increased FiO2"
+      },
+      correctAnswer: "d"
+    },
+    {
+      question: "Which of the following best describes combined hypoxemic and hypercapnic failure?",
+      options: {
+        a: "Only oxygenation failure",
+        b: "Only ventilation failure",
+        c: "Both inadequate alveolar ventilation and abnormal gas transport",
+        d: "Normal gas exchange"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Which assessment is NOT part of ALF evaluation?",
+      options: {
+        a: "Medical and social history",
+        b: "Skin biopsy",
+        c: "Chest x-ray",
+        d: "Arterial blood gases"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What does pulse oximetry measure in ALF patients?",
+      options: {
+        a: "Ventilation",
+        b: "Oxygen saturation (SpO2)",
+        c: "Carbon dioxide levels",
+        d: "Blood pressure"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What is an important nursing diagnosis for ALF?",
+      options: {
+        a: "Imbalanced nutrition related to low metabolic demand",
+        b: "Ineffective airway clearance related to depressed cough reflex",
+        c: "Excessive oxygenation",
+        d: "Hyperactive breathing patterns"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which nursing intervention helps maintain airway patency?",
+      options: {
+        a: "Chest physiotherapy",
+        b: "Bed rest without movement",
+        c: "Avoiding suctioning",
+        d: "Ignoring secretions"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What position is recommended for unilateral lung disease in ALF?",
+      options: {
+        a: "Supine with head flat",
+        b: "Good lung down lateral position",
+        c: "Prone with affected lung down",
+        d: "Sitting upright with feet elevated"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which is NOT a measure to improve oxygenation?",
+      options: {
+        a: "Administering O2",
+        b: "Using CPAP or PEEP for shunting",
+        c: "Sedation to increase oxygen consumption",
+        d: "Mechanical ventilation"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Which clinical sign indicates worsening hypoxemia in ALF?",
+      options: {
+        a: "Increased urine output",
+        b: "Cyanosis of lips and nail beds",
+        c: "Increased bowel sounds",
+        d: "Decreased respiratory rate"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which nervous system change occurs early in ALF?",
+      options: {
+        a: "Coma",
+        b: "Anxiety and restlessness",
+        c: "Bradycardia",
+        d: "Hypotension"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What cardiovascular sign is common early in ALF?",
+      options: {
+        a: "Bradycardia and hypotension",
+        b: "Tachycardia and increased blood pressure",
+        c: "Cardiac arrest",
+        d: "Decreased contractility"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What respiratory change indicates muscle fatigue in ALF?",
+      options: {
+        a: "Bradypnea and use of accessory muscles",
+        b: "Tachypnea with deep breaths",
+        c: "No cough",
+        d: "Regular breathing pattern"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What metabolic change occurs in ALF?",
+      options: {
+        a: "Increased pH",
+        b: "Decreased pH worsening over time",
+        c: "Normal pH",
+        d: "Metabolic alkalosis"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Why is nutritional support important in ALF management?",
+      options: {
+        a: "To prevent overfeeding and malnutrition which worsen lung function",
+        b: "To increase oxygen demand",
+        c: "To stop medications",
+        d: "It is not necessary"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Which nursing intervention prevents skin breakdown in ALF patients?",
+      options: {
+        a: "Leaving patient in one position for hours",
+        b: "Frequent repositioning every 2 hours",
+        c: "Ignoring skin assessment",
+        d: "Avoiding moisturizing skin"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What should be monitored to prevent infections in ALF patients?",
+      options: {
+        a: "Sputum characteristics during suctioning",
+        b: "Central line insertion sites",
+        c: "Temperature and WBC count",
+        d: "All of the above"
+      },
+      correctAnswer: "d"
+    },
+    {
+      question: "Which is an appropriate emotional support intervention for ALF patients?",
+      options: {
+        a: "Allow frequent family visits",
+        b: "Avoid explaining procedures",
+        c: "Ignore patient anxiety",
+        d: "Restrict communication"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What diagnostic test is used to assess ventilation-perfusion mismatch in ALF?",
+      options: {
+        a: "Bronchoscopy",
+        b: "Ventilation-perfusion scanning",
+        c: "ECG",
+        d: "Electrolyte panel"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which medication is used to reduce airway inflammation in ALF?",
+      options: {
+        a: "Bronchodilators",
+        b: "Steroids",
+        c: "Analgesics",
+        d: "Neuromuscular blockers"
+      },
+      correctAnswer: "b"
+    },
+     {
+  question: "Which is NOT a cause of extrapulmonary ALF?",
+  options: {
+    a: "Spinal cord trauma",
+    b: "Myasthenia gravis",
+    c: "Pulmonary edema",
+    d: "Organophosphate poisoning"
+  },
+  correctAnswer: "c"
+}
+    ,{
+      question: "What is a common cause of intrapulmonary ALF?",
+      options: {
+        a: "Brain trauma",
+        b: "Pulmonary embolism",
+        c: "Sleep apnea",
+        d: "Chest trauma"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What is a key feature of sleep apnea related to ALF?",
+      options: {
+        a: "Central nervous system disorder",
+        b: "Upper airway obstruction",
+        c: "Pulmonary edema",
+        d: "Bronchial asthma"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What is the goal of medical management of ALF?",
+      options: {
+        a: "Treat underlying cause and improve oxygenation",
+        b: "Decrease oxygen delivery",
+        c: "Ignore ventilation",
+        d: "Avoid nutrition"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What is a sign of worsening cardiac function in ALF?",
+      options: {
+        a: "Tachycardia",
+        b: "Bradycardia and hypotension",
+        c: "Peripheral vasoconstriction",
+        d: "Increased contractility"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What is the preferred route for nutritional support in ALF?",
+      options: {
+        a: "Parenteral nutrition",
+        b: "Enteral nutrition",
+        c: "No nutrition needed",
+        d: "High caloric feeding above 25 Kcal/Kg/day"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which nursing diagnosis fits a patient at risk of aspiration in ALF?",
+      options: {
+        a: "Impaired spontaneous ventilation",
+        b: "Risk for aspiration related to depressed cough reflex",
+        c: "Anxiety",
+        d: "Imbalanced nutrition"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "What is an important physical exam sign in ALF related to renal function?",
+      options: {
+        a: "Increased urine output",
+        b: "Decreased urine output indicating poor perfusion",
+        c: "Clear lungs",
+        d: "Normal bowel sounds"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Which ABG finding is typical in combined hypoxemic and hypercapnic failure?",
+      options: {
+        a: "PaO2 ≤ 55 mm Hg, PaCO2 > 50 mm Hg",
+        b: "PaO2 normal, PaCO2 normal",
+        c: "PaO2 high, PaCO2 low",
+        d: "PaO2 > 60 mm Hg, PaCO2 < 40 mm Hg"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "What is the priority nursing intervention in ALF?",
+      options: {
+        a: "Maintaining patent airway",
+        b: "Ignoring oxygen saturation",
+        c: "Avoiding patient education",
+        d: "Not monitoring vitals"
+      },
+      correctAnswer: "a"
+    }
+  ]
+},
+            mi: {
+                title: "Myocardial Infarction (MI)",
+                questions: [
+                    {
+                        category: "✅ 1. Basics",
+                        question: "Which of the following best describes myocardial infarction?",
+                        options: {
+                            A: "Temporary myocardial ischemia",
+                            B: "Reversible damage to the heart muscle",
+                            C: "Irreversible myocardial necrosis due to ischemia",
+                            D: "Infection of the myocardium"
+                        },
+                        correctAnswer: "C",
+                        explanation: "MI involves irreversible death of heart muscle cells due to prolonged ischemia."
+                    },
+                    {
+                        category: "✅ 1. Basics",
+                        question: "STEMI involves which of the following?",
+                        options: {
+                            A: "Partial obstruction of coronary artery",
+                            B: "No damage to the heart wall",
+                            C: "Full thickness myocardial necrosis",
+                            D: "Inflammation only"
+                        },
+                        correctAnswer: "C",
+                        explanation: "STEMI results in full-thickness (transmural) necrosis of the heart muscle."
+                    },
+                    {
+                        category: "✅ 1. Basics",
+                        question: "NSTEMI is typically caused by:",
+                        options: {
+                            A: "Complete coronary artery occlusion",
+                            B: "Partial obstruction of coronary artery",
+                            C: "Coronary artery dissection",
+                            D: "Pericarditis"
+                        },
+                        correctAnswer: "B",
+                        explanation: "NSTEMI usually results from partial blockage of a coronary artery."
+                    },
+                    {
+                        category: "✅ 2. Symptoms",
+                        question: "Which symptom is most characteristic of MI?",
+                        options: {
+                            A: "Sharp localized chest pain",
+                            B: "Crushing substernal chest pain",
+                            C: "Pain relieved by rest",
+                            D: "Pain with inspiration only"
+                        },
+                        correctAnswer: "B",
+                        explanation: "MI typically presents with severe, crushing substernal chest pain."
+                    },
+                    {
+                        category: "✅ 2. Symptoms",
+                        question: "MI pain typically radiates to:",
+                        options: {
+                            A: "Right arm",
+                            B: "Left leg",
+                            C: "Left arm, back, neck, or jaw",
+                            D: "Abdomen only"
+                        },
+                        correctAnswer: "C",
+                        explanation: "MI pain often radiates to left arm, back, neck, or jaw."
+                    },
+                    {
+                        category: "✅ 3. Medications",
+                        question: "Which pain medication is used when Nitroglycerin fails?",
+                        options: {
+                            A: "Paracetamol",
+                            B: "Aspirin",
+                            C: "Morphine",
+                            D: "Ibuprofen"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Morphine is used for refractory pain in MI when nitroglycerin is ineffective."
+                    },
+                    {
+                        category: "✅ 4. Diagnostics",
+                        question: "Which ECG change indicates STEMI?",
+                        options: {
+                            A: "T-wave inversion only",
+                            B: "ST-segment elevation",
+                            C: "QRS prolongation",
+                            D: "No change"
+                        },
+                        correctAnswer: "B",
+                        explanation: "ST-segment elevation is the hallmark ECG finding in STEMI."
+                    },
+                    {
+                        category: "✅ 4. Diagnostics",
+                        question: "Which cardiac marker rises earliest in MI?",
+                        options: {
+                            A: "Troponin I",
+                            B: "CK-MB",
+                            C: "Myoglobin",
+                            D: "LDH"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Myoglobin rises earliest (within 1-3 hours) but is less specific."
+                    },
+                    {
+                        category: "✅ 4. Diagnostics",
+                        question: "Troponin I levels typically peak at:",
+                        options: {
+                            A: "2 hours",
+                            B: "6 hours",
+                            C: "12 hours",
+                            D: "24 hours"
+                        },
+                        correctAnswer: "D",
+                        explanation: "Troponin I typically peaks at 24 hours and remains elevated for 7-10 days."
+                    },
+                    {
+                        category: "✅ 4. Diagnostics",
+                        question: "CK-MB returns to normal within:",
+                        options: {
+                            A: "6 hours",
+                            B: "12 hours",
+                            C: "24–36 hours",
+                            D: "5 days"
+                        },
+                        correctAnswer: "C",
+                        explanation: "CK-MB returns to normal within 24-36 hours after MI."
+                    },
+                    {
+                        category: "✅ 4. Diagnostics",
+                        question: "The preferred biomarker for MI is:",
+                        options: {
+                            A: "Myoglobin",
+                            B: "CK-MB",
+                            C: "Troponin",
+                            D: "ALT"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Troponin is the most specific and preferred biomarker for MI."
+                    },
+                    {
+                        category: "✅ 5. Treatment",
+                        question: "Which drug dissolves clots in STEMI?",
+                        options: {
+                            A: "Heparin",
+                            B: "Aspirin",
+                            C: "Fibrinolytics",
+                            D: "Beta-blockers"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Fibrinolytic drugs (like alteplase) dissolve clots in STEMI."
+                    },
+                    {
+                        category: "✅ 5. Treatment",
+                        question: "Fibrinolytics should ideally be given within:",
+                        options: {
+                            A: "12 hours",
+                            B: "6 hours",
+                            C: "3 hours",
+                            D: "24 hours"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Fibrinolytics are most effective when given within 3 hours of symptom onset."
+                    },
+                    {
+                        category: "✅ 5. Treatment",
+                        question: "Common side effect of IV Nitroglycerin is:",
+                        options: {
+                            A: "Hypertension",
+                            B: "Fever",
+                            C: "Headache",
+                            D: "Tachypnea"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Headache is a common side effect of nitroglycerin due to vasodilation."
+                    },
+                    {
+                        category: "✅ 6. Complications",
+                        question: "Which is a major complication of MI?",
+                        options: {
+                            A: "Appendicitis",
+                            B: "Cardiogenic shock",
+                            C: "Liver failure",
+                            D: "Pulmonary edema"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Cardiogenic shock is a life-threatening complication of MI."
+                    },
+                    {
+                        category: "✅ 7. Pharmacology",
+                        question: "Which of the following drugs reduces platelet aggregation?",
+                        options: {
+                            A: "Morphine",
+                            B: "Aspirin",
+                            C: "Nitroglycerin",
+                            D: "Furosemide"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Aspirin irreversibly inhibits platelet aggregation."
+                    },
+                    {
+                        category: "✅ 7. Pharmacology",
+                        question: "Which beta-blocker effect helps in MI?",
+                        options: {
+                            A: "Increasing HR",
+                            B: "Increasing contractility",
+                            C: "Reducing oxygen demand",
+                            D: "Vasodilation only"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Beta-blockers reduce myocardial oxygen demand in MI."
+                    },
+                    {
+                        category: "✅ 7. Pharmacology",
+                        question: "NSTEMI and unstable angina are treated with:",
+                        options: {
+                            A: "Fibrinolytics only",
+                            B: "CCBs & Antiplatelets",
+                            C: "Surgery only",
+                            D: "Thrombolytics always"
+                        },
+                        correctAnswer: "B",
+                        explanation: "NSTEMI/UA are typically managed with CCBs and antiplatelets, not fibrinolytics."
+                    },
+                    {
+                        category: "✅ 7. Pharmacology",
+                        question: "Which condition is a contraindication to fibrinolytics?",
+                        options: {
+                            A: "STEMI",
+                            B: "Recent stroke",
+                            C: "Hypertension",
+                            D: "Diabetes"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Recent stroke is an absolute contraindication to fibrinolytic therapy."
+                    },
+                    {
+                        category: "✅ 8. Management",
+                        question: "What is the first step in MI management upon arrival?",
+                        options: {
+                            A: "Coronary angiography",
+                            B: "Give Morphine",
+                            C: "Take ECG and assess",
+                            D: "Start IV Heparin"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Immediate ECG is crucial for diagnosing and classifying MI."
+                    },
+                    {
+                        category: "✅ 9. Pathophysiology",
+                        question: "Most common cause of MI is:",
+                        options: {
+                            A: "Valve prolapse",
+                            B: "Coronary thrombosis",
+                            C: "Myocarditis",
+                            D: "Infection"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Coronary artery thrombosis is the most common cause of MI."
+                    },
+                    {
+                        category: "✅ 10. Diagnostics",
+                        question: "Which test confirms coronary artery blockage?",
+                        options: {
+                            A: "Chest X-ray",
+                            B: "ECG",
+                            C: "Coronary angiography",
+                            D: "Echocardiogram"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Coronary angiography directly visualizes coronary artery blockages."
+                    },
+                    {
+                        category: "✅ 11. Pharmacology",
+                        question: "Which of these drugs is a calcium channel blocker?",
+                        options: {
+                            A: "Propranolol",
+                            B: "Streptokinase",
+                            C: "Diltiazem",
+                            D: "Lisinopril"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Diltiazem is a calcium channel blocker used in cardiac conditions."
+                    },
+                    {
+                        category: "✅ 11. Pharmacology",
+                        question: "Which of these drugs is not an anticoagulant?",
+                        options: {
+                            A: "Heparin",
+                            B: "Warfarin",
+                            C: "Aspirin",
+                            D: "Enoxaparin"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Aspirin is an antiplatelet, not an anticoagulant."
+                    },
+                    {
+                        category: "✅ 12. Complications",
+                        question: "Symptoms of cardiogenic shock include:",
+                        options: {
+                            A: "Hypertension",
+                            B: "Warm skin",
+                            C: "Cold, clammy skin & hypotension",
+                            D: "Bradycardia only"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Cardiogenic shock presents with cold, clammy skin and hypotension."
+                    },
+                    {
+                        category: "✅ 13. Treatment",
+                        question: "How many IV lines are recommended for fibrinolytic therapy?",
+                        options: {
+                            A: "One",
+                            B: "Two or three",
+                            C: "None",
+                            D: "Four"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Two or three IV lines are recommended for fibrinolytic administration."
+                    },
+                    {
+                        category: "✅ 14. Diagnostics",
+                        question: "Troponin T stays elevated for:",
+                        options: {
+                            A: "12 hours",
+                            B: "1 day",
+                            C: "5–14 days",
+                            D: "48 hours only"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Troponin T remains elevated for 5-14 days post-MI."
+                    },
+                    {
+                        category: "✅ 15. Complications",
+                        question: "Which is a reperfusion dysrhythmia?",
+                        options: {
+                            A: "Atrial fibrillation",
+                            B: "Ventricular tachycardia",
+                            C: "Sinus bradycardia",
+                            D: "Asystole"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Ventricular tachycardia is a common reperfusion arrhythmia."
+                    },
+                    {
+                        category: "✅ 16. Treatment",
+                        question: "Purpose of administering oxygen in MI is to:",
+                        options: {
+                            A: "Reduce fever",
+                            B: "Decrease oxygen saturation",
+                            C: "Improve myocardial oxygenation",
+                            D: "Dilate vessels"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Oxygen improves oxygenation of ischemic myocardium."
+                    },
+                    {
+                        category: "✅ 17. Pharmacology",
+                        question: "Heparin is given with fibrinolytics to:",
+                        options: {
+                            A: "Reduce chest pain",
+                            B: "Open the artery and prevent re-occlusion",
+                            C: "Act as an analgesic",
+                            D: "Stop bleeding"
+                        },
+                        correctAnswer: "B",
+                        explanation: "Heparin helps maintain coronary artery patency after fibrinolysis."
+                    },
+                    {
+                        category: "✅ 18. Nursing Care",
+                        question: "Primary role of nurse during fibrinolytic therapy:",
+                        options: {
+                            A: "Start antibiotics",
+                            B: "Monitor cardiac enzymes",
+                            C: "Observe for bleeding, hypotension, allergies",
+                            D: "Give food"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Nurses must monitor for bleeding complications during fibrinolytic therapy."
+                    },
+                    {
+                        category: "✅ 19. Diagnostics",
+                        question: "Which lab test is part of initial MI workup?",
+                        options: {
+                            A: "Stool test",
+                            B: "Liver function",
+                            C: "Lipid profile",
+                            D: "Mantoux test"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Lipid profile is part of initial MI evaluation to assess CAD risk factors."
+                    },
+                    {
+                        category: "✅ 20. Treatment",
+                        question: "Which drug should be chewed immediately in MI?",
+                        options: {
+                            A: "Morphine",
+                            B: "Heparin",
+                            C: "Aspirin",
+                            D: "Nitroglycerin"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Chewing aspirin provides rapid antiplatelet effect in acute MI."
+                    },
+                    {
+                        category: "✅ 21. Symptoms",
+                        question: "Which of these is NOT a sign of MI?",
+                        options: {
+                            A: "Diaphoresis",
+                            B: "Vomiting",
+                            C: "Epigastric discomfort",
+                            D: "Bright red urine"
+                        },
+                        correctAnswer: "D",
+                        explanation: "Bright red urine is not associated with myocardial infarction."
+                    },
+                    {
+                        category: "✅ 22. Medications",
+                        question: "Which one of the following helps in pain control and anxiolysis?",
+                        options: {
+                            A: "Aspirin",
+                            B: "Nitroglycerin",
+                            C: "Morphine",
+                            D: "Warfarin"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Morphine provides both pain relief and anxiolysis in MI."
+                    },
+                    {
+                        category: "✅ 23. Diagnostics",
+                        question: "Which of these helps detect left ventricular dysfunction?",
+                        options: {
+                            A: "X-ray",
+                            B: "ECG",
+                            C: "Echocardiogram",
+                            D: "Blood sugar"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Echocardiogram evaluates ventricular function post-MI."
+                    },
+                    {
+                        category: "✅ 24. Complications",
+                        question: "Peripheral edema and JVD in MI are signs of:",
+                        options: {
+                            A: "Right heart failure",
+                            B: "Left heart failure",
+                            C: "Hypovolemia",
+                            D: "MI recovery"
+                        },
+                        correctAnswer: "A",
+                        explanation: "JVD and peripheral edema indicate right heart failure."
+                    },
+                    {
+                        category: "✅ 25. Symptoms",
+                        question: "The feeling of 'impending doom' is often associated with:",
+                        options: {
+                            A: "Panic disorder",
+                            B: "Asthma",
+                            C: "Myocardial infarction",
+                            D: "Stroke"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Feeling of impending doom is a classic symptom of acute MI."
+                    },
+                    {
+                        category: "✅ 26. Monitoring",
+                        question: "In which condition would you expect a rise in central venous pressure?",
+                        options: {
+                            A: "Hypotension",
+                            B: "Dehydration",
+                            C: "Right-sided heart failure post-MI",
+                            D: "Left-sided pneumonia"
+                        },
+                        correctAnswer: "C",
+                        explanation: "Right heart failure increases central venous pressure."
+                    },
+                    {
+                        category: "✅ 27. Nursing Care",
+                        question: "Which of these is NOT a goal of MI collaborative care?",
+                        options: {
+                            A: "Pain control",
+                            B: "Skin care",
+                            C: "Blood sugar control",
+                            D: "Teaching & discharge planning"
+                        },
+                        correctAnswer: "C",
+                        explanation: "While important, blood sugar control is not a primary goal unless patient is diabetic."
+                    }
+                ]
+            },
+            shock: {
+                title: "Shock",
+                questions: [
+{
+      question: "What is shock primarily characterized by?",
+      options: {
+        A: "Increased tissue perfusion",
+        B: "Decreased tissue perfusion and impaired cellular metabolism",
+        C: "Increased oxygen supply",
+        D: "Normal cellular function"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What happens in the initial stage of shock?",
+      options: {
+        A: "Tissue reperfusion improves",
+        B: "Anaerobic metabolism increases and lactic acid builds up",
+        C: "Complete organ failure occurs",
+        D: "Oxygen demand decreases"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which system is activated in the compensatory stage of shock?",
+      options: {
+        A: "Parasympathetic nervous system",
+        B: "Sympathetic nervous system",
+        C: "Central nervous system",
+        D: "Immune system"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is a hallmark of the progressive stage of shock?",
+      options: {
+        A: "Vasodilation",
+        B: "Metabolic alkalosis",
+        C: "Vasoconstriction and metabolic acidosis",
+        D: "Increased cardiac output"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "In the refractory stage of shock, what occurs?",
+      options: {
+        A: "Full recovery",
+        B: "Cellular necrosis and multiple organ dysfunction",
+        C: "Sympathetic activation",
+        D: "Improved tissue perfusion"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is NOT a clinical presentation of shock?",
+      options: {
+        A: "Hypotension",
+        B: "Tachycardia",
+        C: "Increased urine output",
+        D: "Restlessness"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Hypovolemic shock results from:",
+      options: {
+        A: "Pump failure",
+        B: "Severe loss of circulating blood volume",
+        C: "Massive vasodilation",
+        D: "Allergic reaction"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is a common cause of hypovolemic shock?",
+      options: {
+        A: "Myocardial infarction",
+        B: "Severe hemorrhage",
+        C: "Spinal cord injury",
+        D: "Allergic reaction"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the main pathophysiological event in hypovolemic shock?",
+      options: {
+        A: "Increased cardiac output",
+        B: "Decreased intravascular volume leading to decreased stroke volume",
+        C: "Vasodilation",
+        D: "Bronchoconstriction"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which clinical sign is typical in hypovolemic shock?",
+      options: {
+        A: "Bradycardia",
+        B: "Weak, thready pulses",
+        C: "Warm and dry skin",
+        D: "Increased urine output"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "The fluid resuscitation rule used in hypovolemic shock is:",
+      options: {
+        A: "1:1 rule",
+        B: "2:1 rule",
+        C: "3:1 rule",
+        D: "4:1 rule"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Cardiogenic shock is caused by:",
+      options: {
+        A: "Loss of sympathetic tone",
+        B: "Severe allergic reaction",
+        C: "Ineffective heart pumping",
+        D: "Fluid loss"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which is NOT a cause of cardiogenic shock?",
+      options: {
+        A: "Myocardial infarction",
+        B: "Pericardial tamponade",
+        C: "Spinal cord injury",
+        D: "Ventricular fibrillation"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Clinical presentation of cardiogenic shock includes:",
+      options: {
+        A: "Warm, flushed skin",
+        B: "Weak thready pulse and cyanosis",
+        C: "Bradycardia only",
+        D: "Increased urine output"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Pharmacological management in cardiogenic shock often includes:",
+      options: {
+        A: "Epinephrine",
+        B: "Dopamine and nitrates",
+        C: "Hydrocortisone",
+        D: "Antihistamines"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Neurogenic shock results from:",
+      options: {
+        A: "Loss of parasympathetic tone",
+        B: "Loss of sympathetic tone causing massive vasodilation",
+        C: "Severe hemorrhage",
+        D: "Allergic reaction"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is a cause of neurogenic shock?",
+      options: {
+        A: "Myocardial infarction",
+        B: "Spinal cord injury",
+        C: "Severe bleeding",
+        D: "Infection"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Typical clinical signs of neurogenic shock include:",
+      options: {
+        A: "Tachycardia and warm skin",
+        B: "Bradycardia and hypotension with warm, dry skin",
+        C: "Hypotension with cool, clammy skin",
+        D: "Cyanosis"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Nursing management of neurogenic shock includes:",
+      options: {
+        A: "Fluid resuscitation and warming patient",
+        B: "Blood transfusion only",
+        C: "Diuretics",
+        D: "Antihistamines"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Anaphylactic shock is caused by:",
+      options: {
+        A: "Severe bacterial infection",
+        B: "Allergic hypersensitivity reaction",
+        C: "Cardiac failure",
+        D: "Loss of sympathetic tone"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is a common trigger for anaphylactic shock?",
+      options: {
+        A: "Trauma",
+        B: "Shellfish and nuts",
+        C: "Spinal anesthesia",
+        D: "Dehydration"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Pathophysiology of anaphylactic shock includes:",
+      options: {
+        A: "Vasodilation and increased capillary permeability causing fluid leakage",
+        B: "Vasoconstriction and decreased capillary permeability",
+        C: "Increased stroke volume",
+        D: "Decreased heart rate"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which symptom is typical in anaphylactic shock?",
+      options: {
+        A: "Swelling of lips and tongue",
+        B: "Bradycardia",
+        C: "Cold, clammy skin",
+        D: "Decreased respiratory rate"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Management of anaphylactic shock includes:",
+      options: {
+        A: "Epinephrine and antihistamines",
+        B: "Dopamine and nitrates",
+        C: "Fluid restriction",
+        D: "Sedation only"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Septic shock results from:",
+      options: {
+        A: "Allergic reaction",
+        B: "Systemic inflammatory response to infection",
+        C: "Severe hemorrhage",
+        D: "Heart failure"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which organism type can cause septic shock?",
+      options: {
+        A: "Gram negative bacteria",
+        B: "Viruses",
+        C: "Parasites and fungi",
+        D: "All of the above"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "A key risk factor for septic shock is:",
+      options: {
+        A: "Malnutrition",
+        B: "Age",
+        C: "Use of invasive catheters",
+        D: "All of the above"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "Clinical signs of septic shock may include:",
+      options: {
+        A: "Fever, chills, tachypnea",
+        B: "Hypothermia only",
+        C: "Bradycardia",
+        D: "Increased urine output"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Initial management of septic shock includes:",
+      options: {
+        A: "Identify and treat infection, fluid resuscitation",
+        B: "Immediate surgery",
+        C: "Fluid restriction",
+        D: "Antihistamines"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Pharmacological treatment of septic shock may include:",
+      options: {
+        A: "Vasopressors and antibiotics",
+        B: "Epinephrine only",
+        C: "Diuretics",
+        D: "Antivirals only"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which complication is NOT related to shock?",
+      options: {
+        A: "Cerebral ischemia",
+        B: "Intestinal ischemia",
+        C: "Hypertension",
+        D: "Multiple organ dysfunction syndrome"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which clinical sign indicates decreased tissue perfusion?",
+      options: {
+        A: "Capillary refill > 3 seconds",
+        B: "Increased urine output",
+        C: "Warm skin",
+        D: "Bradycardia"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "In shock, urine output decreases because:",
+      options: {
+        A: "Increased renal perfusion",
+        B: "Decreased renal perfusion due to hypoperfusion",
+        C: "Increased cardiac output",
+        D: "Vasodilation of renal vessels"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "A weak, thready pulse indicates:",
+      options: {
+        A: "Increased stroke volume",
+        B: "Decreased stroke volume and cardiac output",
+        C: "Normal cardiac function",
+        D: "Bradycardia"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is a priority nursing assessment in shock?",
+      options: {
+        A: "Blood glucose level",
+        B: "Airway, breathing, circulation (ABC)",
+        C: "Liver function test",
+        D: "Skin rash examination"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "During shock, the patient’s mental status might show:",
+      options: {
+        A: "Alertness",
+        B: "Restlessness and confusion",
+        C: "Euphoria",
+        D: "Calmness"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What does the 3:1 fluid resuscitation rule refer to?",
+      options: {
+        A: "3 ml isotonic fluid for 1 ml blood loss",
+        B: "1 ml fluid for 3 ml blood loss",
+        C: "3 ml blood for 1 ml fluid loss",
+        D: "1 ml blood for 3 ml fluid loss"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which drug is often used to improve cardiac contractility in cardiogenic shock?",
+      options: {
+        A: "Dopamine",
+        B: "Epinephrine",
+        C: "Atropine",
+        D: "Antihistamine"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which clinical feature differentiates neurogenic shock from other types?",
+      options: {
+        A: "Tachycardia",
+        B: "Bradycardia",
+        C: "Cold, clammy skin",
+        D: "Increased urine output"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "In anaphylactic shock, which medication is first line?",
+      options: {
+        A: "Epinephrine",
+        B: "Dopamine",
+        C: "Hydrocortisone",
+        D: "Nitrates"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What causes metabolic acidosis in progressive shock?",
+      options: {
+        A: "Increased oxygen delivery",
+        B: "Accumulation of lactic acid",
+        C: "Excess bicarbonate",
+        D: "Decreased lactic acid"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which organ failure is a complication of shock?",
+      options: {
+        A: "Renal failure",
+        B: "Liver failure only",
+        C: "Pancreatic failure only",
+        D: "Skin failure"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Why is oxygen therapy critical in shock?",
+      options: {
+        A: "To increase oxygen supply to tissues",
+        B: "To decrease heart rate",
+        C: "To increase fluid loss",
+        D: "To cause vasodilation"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which vital sign is usually increased in shock?",
+      options: {
+        A: "Blood pressure",
+        B: "Heart rate",
+        C: "Oxygen saturation",
+        D: "Urine output"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which nursing intervention is important for maintaining patient warmth in shock?",
+      options: {
+        A: "Use heavy blankets",
+        B: "Use light covers and control environmental temperature",
+        C: "Do not cover the patient",
+        D: "Keep patient in a cold room"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which of the following is a sign of poor peripheral perfusion?",
+      options: {
+        A: "Quick capillary refill",
+        B: "Pallor and cyanosis",
+        C: "Warm skin",
+        D: "Pink mucous membranes"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is the best way to assess renal perfusion in a patient with shock?",
+      options: {
+        A: "Monitor urine output hourly",
+        B: "Measure blood glucose",
+        C: "Assess skin turgor",
+        D: "Measure heart rate"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "What is the typical skin finding in hypovolemic shock?",
+      options: {
+        A: "Warm and flushed",
+        B: "Cool and clammy",
+        C: "Dry and warm",
+        D: "Edematous"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which shock type is associated with massive vasodilation and pooling of blood?",
+      options: {
+        A: "Cardiogenic shock",
+        B: "Hypovolemic shock",
+        C: "Neurogenic shock",
+        D: "Septic shock"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "What causes the drop in blood pressure in hypovolemic shock?",
+      options: {
+        A: "Increased cardiac output",
+        B: "Decreased circulating blood volume",
+        C: "Vasodilation",
+        D: "Bradycardia"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which electrolyte imbalance might be expected in shock due to cellular damage?",
+      options: {
+        A: "Hyperkalemia",
+        B: "Hypokalemia",
+        C: "Hyponatremia",
+        D: "Hypernatremia"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which medication is used to treat bradycardia in neurogenic shock?",
+      options: {
+        A: "Atropine",
+        B: "Dopamine",
+        C: "Epinephrine",
+        D: "Nitrates"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which type of shock results from an infection causing systemic inflammatory response?",
+      options: {
+        A: "Anaphylactic shock",
+        B: "Neurogenic shock",
+        C: "Septic shock",
+        D: "Cardiogenic shock"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "What is the first step in nursing management of shock?",
+      options: {
+        A:"ABC assessment (Airway, Breathing, Circulation)",
+        B: "Administer antibiotics",
+        C: "Administer antihistamines",
+        D: "Measure blood pressure only"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "Why is lactic acid increased in shock?",
+      options: {
+        A: "Due to aerobic metabolism",
+        B: "Due to anaerobic metabolism from tissue hypoxia",
+        C: "Due to kidney failure",
+        D: "Due to excess oxygen supply"
+      },
+      correctAnswer: "B"
+    }
+  ]
+                
+            }
+        };
+        
+        // متغيرات التطبيق
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        let selectedOption = null;
+        let countdownTimer = null;
+        let currentQuiz = null;
+        let currentQuestions = [];
+        
+        // عناصر DOM
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const feedbackElement = document.getElementById('feedback');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const scoreElement = document.getElementById('score');
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const progressBarElement = document.getElementById('progress-bar');
+        const currentQuestionElement = document.getElementById('current-question');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const categoryElement = document.getElementById('category');
+        const quizTitleElement = document.getElementById('quiz-title');
+        const homeSection = document.getElementById('home-section');
+        const quizSection = document.getElementById('quiz-section');
+        
+        // تهيئة التطبيق
+        document.addEventListener('DOMContentLoaded', () => {
+            // عرض الصفحة الرئيسية أولاً
+            showHomePage();
+        });
+        
+        // عرض الصفحة الرئيسية
+        function showHomePage() {
+            homeSection.style.display = 'block';
+            quizSection.style.display = 'none';
+        }
+        
+        // عرض صفحة الأسئلة
+        function showQuizPage() {
+            homeSection.style.display = 'none';
+            quizSection.style.display = 'block';
+        }
+        
+        // تحميل اختبار معين
+        function loadQuiz(quizId) {
+            if (quizzes[quizId]) {
+                currentQuiz = quizId;
+                currentQuestions = quizzes[quizId].questions;
+                quizTitleElement.textContent = quizzes[quizId].title;
+                
+                // إعادة تعيين الإحصائيات
+                currentQuestionIndex = 0;
+                score = 0;
+                correctAnswers = 0;
+                incorrectAnswers = 0;
+                selectedOption = null;
+                
+                // تحميل السؤال الأول
+                totalQuestionsElement.textContent = currentQuestions.length;
+                
+                if (currentQuestions.length > 0) {
+                    loadQuestion();
+                } else {
+                    alert("This quiz doesn't have any questions yet. Please check back later.");
+                    return;
+                }
+                
+                updateStats();
+                
+                // الانتقال لصفحة الأسئلة
+                showQuizPage();
+            }
+        }
+        
+        // العودة للصفحة الرئيسية
+        function goBackToHome() {
+            showHomePage();
+        }
+        
+        // تحميل السؤال الحالي
+        function loadQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                currentQuestionIndex = 0;
+            }
+            
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            questionTextElement.textContent = currentQuestion.question;
+            categoryElement.textContent = currentQuestion.category;
+            
+            optionsContainerElement.innerHTML = '';
+            for (const [key, value] of Object.entries(currentQuestion.options)) {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.innerHTML = `
+                    <span class="option-letter">${key}</span>
+                    <span class="option-text">${value}</span>
+                `;
+                optionElement.dataset.option = key;
+                optionElement.addEventListener('click', () => selectOption(optionElement));
+                optionsContainerElement.appendChild(optionElement);
+            }
+            
+            feedbackElement.style.display = 'none';
+            selectedOption = null;
+            
+            // تحديث شريط التقدم وعداد الأسئلة
+            progressBarElement.style.width = `${(currentQuestionIndex / currentQuestions.length) * 100}%`;
+            currentQuestionElement.textContent = currentQuestionIndex + 1;
+            
+            // تعطيل زر السابق إذا كنا في السؤال الأول
+            prevButton.disabled = currentQuestionIndex === 0;
+            
+            // إلغاء أي عد تنازلي سابق
+            if (countdownTimer) {
+                clearTimeout(countdownTimer);
+                countdownTimer = null;
+            }
+        }
+        
+        // اختيار إجابة
+        function selectOption(optionElement) {
+            if (feedbackElement.style.display === 'block') return;
+            
+            // إزالة التحديد من جميع الخيارات
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // تحديد الخيار المختار
+            optionElement.classList.add('selected');
+            selectedOption = optionElement.dataset.option;
+            
+            // التحقق من الإجابة مباشرة عند الاختيار
+            checkAnswer();
+        }
+        
+        // التالي
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+        
+        // السابق
+        function prevQuestion() {
+            currentQuestionIndex--;
+            loadQuestion();
+        }
+        
+        // التحقق من الإجابة
+        function checkAnswer() {
+            if (!selectedOption) return;
+            
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            const optionElements = document.querySelectorAll('.option');
+            
+            optionElements.forEach(element => {
+                element.classList.remove('correct', 'incorrect');
+                if (element.dataset.option === currentQuestion.correctAnswer) {
+                    element.classList.add('correct');
+                } else if (element.dataset.option === selectedOption && selectedOption !== currentQuestion.correctAnswer) {
+                    element.classList.add('incorrect');
+                }
+            });
+            
+            if (selectedOption === currentQuestion.correctAnswer) {
+                score += 10;
+                correctAnswers++;
+                feedbackElement.innerHTML = `
+                    <i class="fas fa-check-circle feedback-icon"></i>
+                    Correct! +10 points
+                    <p>${currentQuestion.explanation || ''}</p>
+                `;
+                feedbackElement.className = 'feedback correct';
+                
+                // الانتقال للسؤال التالي بعد ثانية واحدة إذا كانت الإجابة صحيحة
+                countdownTimer = setTimeout(nextQuestion, 1000);
+            } else {
+                incorrectAnswers++;
+                feedbackElement.innerHTML = `
+                    <i class="fas fa-times-circle feedback-icon"></i>
+                    Incorrect! The correct answer is ${currentQuestion.correctAnswer}) ${currentQuestion.options[currentQuestion.correctAnswer]}
+                    <p>${currentQuestion.explanation || ''}</p>
+                    <div style="margin-top: 10px;">Moving to next question in <span class="countdown">3</span> seconds...</div>
+                `;
+                feedbackElement.className = 'feedback incorrect';
+                
+                // بدء العد التنازلي للانتقال للسؤال التالي بعد 3 ثواني
+                let seconds = 3;
+                const countdownElement = feedbackElement.querySelector('.countdown');
+                countdownElement.textContent = seconds;
+                
+                const countdownInterval = setInterval(() => {
+                    seconds--;
+                    countdownElement.textContent = seconds;
+                    
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                        nextQuestion();
+                    }
+                }, 1000);
+            }
+            
+            feedbackElement.style.display = 'block';
+            updateStats();
+        }
+        
+        // عرض تلميح
+        function showHint() {
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            alert(`Hint: ${currentQuestion.explanation || 'No hint available for this question'}`);
+        }
+        
+        // تحديث الإحصائيات
+        function updateStats() {
+            scoreElement.textContent = score;
+            correctCountElement.textContent = correctAnswers;
+            incorrectCountElement.textContent = incorrectAnswers;
+        }
+    </script>
+</body>
+</html>
